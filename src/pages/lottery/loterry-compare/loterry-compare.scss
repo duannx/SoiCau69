@@ -1,0 +1,262 @@
+page-loterry-compare {
+    .a-main-segment-content {
+        padding: 8px;
+    }
+    #a-main .scroll-content {
+        overflow-y: hidden;
+    }
+    #a-header-content {
+        padding: 8px;
+        height: 50px;
+        background-color: white;
+        transition: transform 200ms;
+        position: absolute;
+        width: 100%;
+        z-index: 9;
+    }
+    .a-inputs-controller {
+        border: solid 2px map-get($colors, danger);
+        margin: 10px;
+    }
+    .a-input {
+        padding: 10px;
+        border-radius: 4px;
+        border: solid 1px gray;
+        width: 100%;
+    }
+    .a-input-number .text-input {
+        margin: 0 !important;
+    }
+    .a-col-header {
+        color: white;
+        font-weight: bold;
+    }
+    .a-row-header {
+        background-color: map-get($colors, danger);
+        color: #FFF
+    }
+    .a-header {
+        border: solid 1px gray;
+        color: red;
+    }
+    .a-header-content-hide {
+        transform: translateY(-140%);
+    }
+    .a-icon {
+        color: blue;
+        font-size: 1.4em;
+        font-weight: bold;
+        padding: 8px;
+    }
+    #a-scroll-content {
+        margin-top: 8px;
+        height: calc(100vh - 110px);
+        overflow-y: auto;
+    } // ------------------------------Nam
+    .lottery-container {
+        // border-top: 1px solid map-get($colors, 'border-table');
+        border-left: 1px solid map-get($colors, 'border-table');
+        margin-bottom: 10px;
+    }
+    .lottery-item {
+        border-bottom: 1px solid map-get($colors, 'border-table');
+        border-right: 1px solid map-get($colors, 'border-table');
+        padding: 8px;
+    }
+    .border-container {
+        border-left: 1px solid map-get($colors, 'border-table');
+    }
+    .border-item {
+        border-bottom: 1px solid map-get($colors, 'border-table');
+        border-right: 1px solid map-get($colors, 'border-table');
+    }
+    .two-lines-item {
+        height: 50%;
+    }
+    .green-title {
+        background-color: #71A71D;
+        border: none;
+        color: white;
+    }
+    .rank {
+        color: #777777;
+        padding: 10px;
+    }
+    .flex-1 {
+        flex: 1;
+    }
+    .flex-2 {
+        flex: 2;
+    } // sms ad
+    .a-row-item {
+        border-bottom: solid 1px lightgray;
+        border-left: solid 1px lightgray;
+        border-right: solid 1px lightgray;
+        min-height: 2em;
+        line-height: 2em;
+    }
+    .a-border-left {
+        border-left: solid 1px lightgray;
+    }
+    .a-border-right {
+        border-right: solid 1px lightgray;
+    }
+    .a-border-bottom {
+        border-bottom: solid 1px lightgray;
+    }
+    .n-col-item {
+        min-height: 2em;
+    }
+    .n-green-title {
+        background-color: #71A71D;
+        color: white;
+    }
+    .n-red-title {
+        background-color: map-get($colors, danger);
+        color: white;
+    }
+    .n-blue-title {
+        background-color: #2B4B84;
+        color: white;
+    }
+    .n-grey-title {
+        background-color: #f2f2f2;
+        border-left: 3px solid #71A71D;
+        padding: 8px 4px 8px 12px;
+    }
+    .n-red-text {
+        color: map-get($colors, danger);
+    }
+    .n-grey-text {
+        color: grey;
+    }
+    .n-blue-border {
+        border: 1px solid #277dad;
+    }
+    .n-left-loto-item {
+        background-color: #DFE8ED;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .n-right-loto-item {
+        background-color: #F8F8F0;
+        border-left: 1px solid #277dad;
+        display: flex;
+        align-items: center;
+    }
+    .n-date-green-item {
+        background-color: #71A71D;
+        color: white;
+        margin: 4px;
+    }
+    .n-padding {
+        padding: 6px;
+    }
+    .n-padding-0 {
+        padding: 0;
+    }
+    .n-padding-lr {
+        padding: 0 6px !important;
+    }
+    .n-margin-top {
+        margin-top: 8px;
+    }
+    .n-medium-text {
+        font-size: 1.1em
+    }
+    .n-bold-text {
+        font-weight: bold;
+    }
+    #total-prize {
+        background-color: #ec3232;
+        padding: 6px;
+        border-radius: 8px;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: white;
+    }
+    .vietlott-info-text {
+        color: #2e126f;
+    }
+    .num-container {
+        padding: 8px !important;
+    }
+    .num {
+        width: 10vw;
+        height: 10vw;
+        max-width: 4em;
+        max-height: 4em;
+        border-radius: 50%;
+        font-size: 1.2em;
+        color: white;
+        font-weight: bold;
+    }
+    .vietllot-content {
+        width: 100%;
+        padding-top: 20px;
+    }
+    .vietlott-cell {
+        width: 16.66%;
+        text-align: center;
+        float: left;
+        span {
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            display: block;
+            border-radius: 50%;
+            background: #123;
+            margin: auto;
+            color: #FFF;
+        }
+    }
+    .vietlott-cell:nth-child(1) {
+        span {
+            background-color: #488aff !important;
+        }
+    }
+    .vietlott-cell:nth-child(2) {
+        span {
+            background-color: #71a71d !important;
+        }
+    }
+    .vietlott-cell:nth-child(3) {
+        span {
+            background-color: #e13838 !important;
+        }
+    }
+    .vietlott-cell:nth-child(4) {
+        span {
+            background-color: #2ec95c !important;
+        }
+    }
+    .vietlott-cell:nth-child(5) {
+        span {
+            background-color: #2927ad !important;
+        }
+    }
+    .vietlott-cell:nth-child(6) {
+        span {
+            background-color: #ff8d00 !important;
+        }
+    }
+    button {
+        margin: 0 10px !important;
+        height: auto !important;
+        padding: 11px !important;
+    }
+    // input {
+    //     padding: 8px 10px;
+    //     width: 100%;
+    //     border: solid 2px #bfbfbf;
+    //     border-radius: 5px;
+    // }
+    .highlight {
+        background-color: #FF0;
+    }
+    .result {
+        color: map-get($colors, danger);
+    }
+}

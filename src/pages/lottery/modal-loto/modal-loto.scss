@@ -1,0 +1,23 @@
+page-modal-loto {
+  #iPageContent {
+    background: rgba(0,0,0,.1);
+  }
+  .a-content {
+    background-color: white;
+    max-height: 40vh;
+    overflow: auto;
+    transform: translateY(100%);
+    transition: 200ms;
+  }
+  .a-number {
+    width: 2em;
+    height: 2em;
+    margin: 1px;
+  }
+  .a-number-selected {
+    background-color: chocolate;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+  }
+}

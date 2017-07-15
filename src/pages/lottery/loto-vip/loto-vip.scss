@@ -1,0 +1,58 @@
+page-loto-vip {
+    .a-number-vip {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        background-color: chocolate;
+        color: white;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 10px 0 10px;
+    }
+    .a-box-header {
+        border: solid 2px map-get($colors, danger);
+        margin: 10px;
+        padding-bottom: 20px;
+    }
+    .a-table-headers {
+        background-color: lightblue;
+        padding: 10px;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+    .a-loto-day {
+        // background-color: lightblue;
+        padding: 10px;
+        text-align: center;
+    }
+    .a-loto {
+        width: 2em;
+        height: 2em;
+        border-radius: 1em;
+        color: white;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 6px 0 6px;
+        font-size: 1em;
+        font-weight: bold;
+    }
+    .loto-green {
+        background-color: map-get($colors, danger);
+    }
+    .loto-gray {
+        background-color: gray;
+    }
+    .loto-in {
+        background-color: map-get($colors, danger);
+    }
+    .loto-out {
+        background-color: gray;
+    }
+    .a-loto-numbers {
+        margin-top: 4px;
+        border: solid 1px lightblue;
+    }
+}

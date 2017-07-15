@@ -1,30 +1,56 @@
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
+import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
 
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { DatePicker } from '@ionic-native/date-picker';
+
+import { Device } from '@ionic-native/device';
+  
+import { Keyboard } from '@ionic-native/keyboard';
+
+
+import { HttpService } from '../providers/http-service';
+import { LotteryHttpService } from '../providers/lottery/lottery-http-service';
+import { LotteryConstants } from '../providers/lottery/lottery-constant';
+import { LotteryDBCenter } from '../providers/lottery/lottery';    
+import { DeviceInfoProvider } from '../providers/device-info/device-info';
+import { LotteryHomePage } from '../pages/lottery/lottery-home/lottery-home'
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    LotteryHomePage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    HttpModule,
+    IonicModule,
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    LotteryHomePage
   ],
   providers: [
+    Device,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    DatePicker, 
+    Keyboard,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    HttpService,
+    LotteryHttpService,
+    LotteryConstants,
+    LotteryDBCenter,
+    DeviceInfoProvider,
   ]
 })
-export class AppModule {}
+export class AppModule { }

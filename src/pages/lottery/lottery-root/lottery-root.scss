@@ -1,0 +1,115 @@
+page-lottery-root {
+    ion-content {
+        background-color: map-get($colors, content-background) !important;
+    }
+    #a-header-content {
+        padding: 8px;
+        height: 50px;
+        background-color: white;
+        transition: transform 200ms;
+        position: absolute;
+        width: 100%;
+        z-index: 9;
+    }
+    .a-header {
+        border: solid 1px gray;
+        color: red;
+    }
+    .a-header-content-hide {
+        transform: translateY(-140%);
+    }
+    .a-icon {
+        color: blue;
+        font-size: 1.4em;
+        font-weight: bold;
+        padding: 8px;
+    }
+    #a-scroll-content {
+        margin-top: 8px;
+        height: calc(100vh - 110px);
+        overflow-y: auto;
+    }
+    .content-block {
+        padding: 20px 10px;
+        margin: 15px 10px 0 10px;
+        background-color: #FFF;
+    }
+    $codeSize :30;
+    .vip-numbers {
+        font-size: 1em;
+        text-align: center;
+        img {
+            width: 1.5em;
+            height: 1.5em;
+            display: inline-block;
+            vertical-align: middle;
+            &:last-child {
+                transform: rotateY(180deg);
+            }
+        }
+        .code {
+            width: 1.5 * $codeSize + px;
+            height: 1.5 * $codeSize + px;
+            line-height: 1.5 * $codeSize + px;
+            font-size: 1.5em;
+        }
+    }
+    .super-red {
+        font-weight: bold;
+        color: map-get($colors, danger);
+        text-transform: uppercase;
+    }
+    .number-block {
+        margin: 10px 20px;
+        background-color: map-get($colors, content-background);
+        border-radius: 10px;
+        padding: 10px 0;
+    }
+    .code {
+        width: $codeSize + px;
+        height: $codeSize + px;
+        line-height: $codeSize + px;
+        border-radius: 50%;
+        background-color: #FFF;
+        border: solid 1px map-get($colors, danger);
+        color: map-get($colors, danger);
+        text-align: center;
+        display: inline-block;
+        margin: 0 3px;
+        &.win {
+            color: #FFF;
+            background-color: map-get($colors, danger);
+        }
+    }
+    .results {
+        margin: 15px 10px;
+        background-color: #FFF;
+        .title {
+            width: 100%;
+            border-bottom: solid 1px map-get( $colors, content-background);
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            padding: 15px;
+        }
+    }
+    [padding] {
+        padding: 10px !important;
+    }
+    .date {
+        color: map-get($colors, secondary);
+    }
+    .code-block {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid map-get($colors, content-background);
+    }
+    .get-number {
+        text-align: center;
+        padding: 20px 0 10px 0;
+        button {
+            margin: 5px auto 0 auto;
+            width: 80%;
+        }
+    }
+}

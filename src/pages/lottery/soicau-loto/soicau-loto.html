@@ -1,0 +1,97 @@
+<ion-content no-bounce>
+
+    <div class="a1-header-height a3-container a3-justify-start a3-items-center m-header ">
+        <div class="a3-container " padding (click)="onClickBack()">
+            <ion-icon name="ios-arrow-back-outline" class="header-button-icon"></ion-icon>
+        </div>
+        <div class="m-header-title">{{title}}</div>
+    </div>
+
+    <div class="a1-content">
+
+        <div class="a-inputs-controller">
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-6 (click)="onClickPickDay()">
+                        <div style="padding-bottom:10px">Biên ngày cầu chạy</div>
+                        <div class="a-input a3-container a3-justify-between">
+                            <div>{{inputs.end}}</div>
+                            <ion-icon name="ios-calendar-outline" class="a-input-icon"></ion-icon>
+                        </div>
+                    </ion-col>
+                    <ion-col col-6 (click)="onClickPickNumberDay()">
+                        <div style="padding-bottom:10px">Số ngày cầu chạy</div>
+                        <div class="a-input">
+                            <div>{{inputs.days}}</div>
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col> Chọn tỉnh</ion-col>
+                </ion-row>
+                <ion-row (click)="onClickPickCategory()">
+                    <ion-col>
+                        <div class="a-input a3-container a3-justify-between">
+                            <div>{{inputs.category.name}}</div>
+                            <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+
+        <div text-center style="line-height:1.5em; padding : 10px; margin:8px;background-color:lightblue">10 Bộ số có số vị trí tạo cầu nhiều nhất </div>
+
+        <div class="mChartContainer">
+            <canvas id="mChartCanvas"></canvas>
+        </div>
+
+
+        <div padding text-center style="line-height:1.5em">Chi tiết {{title}} <strong>{{inputs.category.name}}</strong>, {{inputs.days}} ngày trước <span style="color:blue">{{inputs.end}}</span> </div>
+        <div padding style="background-color:lightblue; margin :8px">Cầu về dài nhất là {{mLotoMax}} ngày</div>
+        <div class="a-lotos-container">
+            <ion-grid style="padding:0px">
+                <ion-row *ngFor="let category of lotos_categories" class="a-loto-category">
+                    <ion-col col-2 class="a-loto-header a3-container a3-items-center a3-justify-center" (click)="onClickCategory(category)">
+                        Đầu {{category.type}}</ion-col>
+                    <ion-col col-1 *ngFor="let loto of category.lotos" class="a-loto-number" [class.a-loto-no-numbers]="loto.positions.length==0" (click)="onClickLoto(loto)">
+                        <div *ngIf="loto.positions.length>0">
+                            <div class="a-loto-number-loto" text-center>{{loto.loto}}</div>
+                            <div class="a-loto-number-count" text-center>{{loto.positions.length}}</div>
+                        </div>
+
+                    </ion-col>
+                </ion-row>
+
+                <ion-row class="a3-container a3-justify-center a3-items-center" style="margin-top:10px">
+
+                    <div class="number-loto"></div>
+                    <div style="padding : 0 20px 0 10px">Loto</div>
+
+                    <div class="number-count"></div>
+
+                    <div style="padding : 0 20px 0 10px"> Số lần xuất hiện</div>
+                </ion-row>
+            </ion-grid>
+
+
+        </div>
+
+        <div padding></div>
+
+        <!--<div text-center style="line-height:1.5em; padding : 10px; margin:8px;background-color:lightblue">10 Bộ số có số lần về nhiều nhất </div>
+
+    <div class="mChartContainer">
+      <canvas id="mChartCanvas"></canvas>
+    </div>-->
+
+
+        <div padding></div>
+
+
+
+
+
+    </div>
+
+</ion-content>

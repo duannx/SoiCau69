@@ -1,0 +1,98 @@
+<ion-content no-bounce>
+
+    <div class="a1-header-height a3-container a3-justify-between a3-items-center m-header ">
+        <div class="a3-container modal-button" padding (click)="onClickBack()">
+            Huỷ
+        </div>
+        <div class="m-header-title">{{title}}</div>
+        <div class="a3-container modal-button" padding>
+        </div>
+    </div>
+
+    <div class="a1-content">
+        <div text-center style="font-weight:bold;font-size:1.2em;padding-top:20px">Chọn bộ số muốn chơi</div>
+        <div class="a3-container a3-wrap a-number-container" padding>
+            <div class="a-number a3-container a3-items-center a3-justify-center" *ngFor="let loto of lotos" (click)="onClickLoto(loto)" [class.a-number-selected]="loto.selected">{{loto.loto}}</div>
+        </div>
+        <div padding>
+            <div class="divider"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Số lượng đặt cược</label>
+            <!--<input type="number" [(ngModel)]="moneyPerNumber" (ngModelChange)="onInputChange()" />
+            <span>{{moneyUnit}}/Bộ số</span>-->
+            <ion-grid *ngIf="playMode.numberOfCode ==1">
+                <ion-row *ngFor="let loto of lotos_selected; let i = index">
+                    <ion-col col-2>
+                        <span class="code">{{loto.loto}}</span>
+                    </ion-col>
+                    <ion-col col-1>
+                        <span>x</span>
+                    </ion-col>
+                    <ion-col col-5>
+                        <div class="div-input">
+                            <input #input type="number" [(ngModel)]="loto.point" (ngModelChange)="onPointChange(loto,input)" class="pointInput" />
+                        </div>
+                        <!--<div class="divPoint">
+                            <span class="point">20</span>
+                            <span class="unit">Điểm</span>
+                        </div>-->
+                    </ion-col>
+                    <ion-col col-1>
+                        <span>=</span>
+                    </ion-col>
+                    <ion-col col-3>
+                        <span class="money no-margin-right">{{loto.point * playMode.moneyPerPoint}} </span> <span class="no-margin-right">Xu</span>
+                    </ion-col>
+                </ion-row>
+
+            </ion-grid>
+            <ion-grid *ngIf="playMode.numberOfCode !=1 && lotos_selected.length > 0">
+                <ion-row>
+                    <ion-col col-6 class="col-code">
+                        <span *ngFor="let loto of lotos_selected; let i = index" class="code">{{loto.loto}}</span>
+                    </ion-col>
+                    <ion-col col-1>
+                        <span>x</span>
+                    </ion-col>
+                    <ion-col col-5>
+                        <div class="div-input">
+                            <input #input type="number" [(ngModel)]="totalPoint" (ngModelChange)="onTotalPointChange(input)" class="pointInput" />
+                        </div>
+                        <!--<div class="divPoint">
+                            <span class="point">20</span>
+                            <span class="unit">Điểm</span>
+                        </div>-->
+                    </ion-col>
+
+                </ion-row>
+            </ion-grid>
+            <ion-row class="row-total">
+                <ion-col col-8>
+                    <span class="no-margin-right">Tổng =</span>
+                </ion-col>
+                <ion-col col-4>
+                    <span class="total-money no-margin-right">{{totalMoney}}</span>
+                    <span class="no-margin-right"> Xu</span>
+                </ion-col>
+            </ion-row>
+        </div>
+        <!--<div class="form-group">
+            <label>Tổng: <span>{{totalMoney}} {{moneyUnit}}</span></label>
+        </div>-->
+        <!--<div class="a-btn-container" padding>
+            <div (click)="onClickPlay()" id="btn-play" class="a-btn">Chơi</div>
+            <div (click)="onClickBack()" id="btn-cancel" class="a-btn">Hủy</div>
+        </div>-->
+        <div padding>
+            <div class="center-button">
+                <button (click)="onClickPlay()" ion-button color="secondary" round full>Chơi </button>
+                <button (click)="onClickBack()" ion-button color="danger" round full>Hủy </button>
+            </div>
+        </div>
+
+        <div padding></div>
+    </div>
+
+</ion-content>

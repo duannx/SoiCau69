@@ -1,0 +1,74 @@
+<ion-content no-bounce style="width: 100%; height: 100%">
+    <div class="a1-header-height a3-container a3-justify-start a3-items-center m-header ">
+        <div class="a3-container " padding (click)="onClickBack()">
+            <ion-icon name="ios-arrow-back-outline" class="header-button-icon"></ion-icon>
+        </div>
+        <div class="m-header-title" style="flex : 1">Thống kê Lô rơi</div>
+    </div>
+    <div id="main-content" class="a1-content">
+        <div class="a-inputs-controller">
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-12 (click)="onClickPickCategory()">
+                        <div style="padding-bottom:10px">Chọn tỉnh</div>
+                        <div class="a-input a3-container a3-justify-between">
+                            <div>{{category.name}}</div>
+                            <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 (click)="onClickPickWeeks()">
+                        <div style="padding-bottom:10px">Chọn thống kê</div>
+                        <div class="a-input a3-container a3-justify-between">
+                            <div>Những bộ số xuất hiện liên tiếp và kết thúc vào ngày hôm nay</div>
+                            <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+
+        <div padding text-center style="font-weight:bold;font-size : 1.1em">
+            Thống kê <span *ngIf="typeSelect == 1">những bộ số xuất hiện liên tiếp cho đến hôm nay</span>
+            <span *ngIf="typeSelect == 2">những bộ số xuất hiện liên tiếp nhiều nhất trong 30 lượt quay gần đây</span>
+            <span *ngIf="typeSelect == 3">những bộ số xuất hiện nhiều nhất trong 30 lượt quay gần đây</span>
+        </div>
+
+        <ion-grid text-center>
+            <ion-row class="a-row-header table-header">
+                <ion-col col-2>
+                    Bộ số
+                </ion-col>
+                <ion-col col-3>
+                    <span *ngIf="typeSelect == 1">Số ngày về liên tiếp</span>
+                    <span *ngIf="typeSelect == 2">Số ngày về liên tiếp</span>
+                    <span *ngIf="typeSelect == 3">Số ngày chưa ra</span>
+                </ion-col>
+                <ion-col col-3>
+                    Ngày về gần nhất
+                </ion-col>
+                <ion-col col-4>
+                    Tổng số lần về (30 lượt quay)
+                </ion-col>
+            </ion-row>
+            <ion-row no-padding *ngFor="let element of showData ; let i = index" class="a-row-content" [class.a-row-content-last]="i==(showData.length-1)" [class.a-row-content-i]="i%2==1" [class.a-row-content-x]="i%2==0">
+                <!--<ion-row no-padding>-->
+                <ion-col col-2>
+                    {{element.code}}
+                </ion-col>
+                <ion-col col-3>
+                    <span *ngIf="typeSelect == 1">{{element.streakIncludeToday}}</span>
+                    <span *ngIf="typeSelect == 2">{{element.bestStreak}}</span>
+                    <span *ngIf="typeSelect == 3">{{element.numOfMissDay}}</span>
+                </ion-col>
+                <ion-col col-4>
+                    {{element.lastFireDay}}
+                </ion-col>
+                <ion-col col-3>
+                    {{element.numOfFireTime}}
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <div padding></div>
+    </div>
+</ion-content>

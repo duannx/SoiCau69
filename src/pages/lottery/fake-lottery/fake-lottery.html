@@ -1,0 +1,114 @@
+<ion-content no-bounce style="width: 100%; height: 100%">
+
+    <div class="a1-header-height a3-container a3-justify-start a3-items-center m-header ">
+        <div class="a3-container " padding style="order:0;" (click)="onClickOpenMenu()">
+            <ion-icon name="ios-menu-outline" class="header-button-icon"></ion-icon>
+        </div>
+        <div class="m-header-title" style="flex : 1">Cùng quay xổ số</div>
+    </div>
+    <div class="a1-content">
+
+        <div class="a-inputs-controller">
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-6 (click)="onClickPickCategory()">
+                        <div style="padding-bottom:10px">Chọn tỉnh</div>
+                        <div class="a-input a3-container a3-justify-between">
+                            <div>{{category.name}}</div>
+                            <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+                        </div>
+                    </ion-col>
+                    <ion-col col-6>
+                        <div style="padding-bottom:10px">&nbsp;</div>
+                        <button ion-button color="primary" icon-left *ngIf="!isStart" (click)="start()">
+                        <ion-icon name="md-arrow-dropright"></ion-icon>
+                        Bắt đầu
+                    </button>
+                        <button ion-button color="danger" *ngIf="isStart" icon-left (click)="end()">
+                        <ion-icon name="square"></ion-icon>
+                        Dừng
+                    </button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+        <div *ngIf="type==1" class="a-main-segment-content">
+            <ion-grid no-padding>
+                <ion-row class="a-row-header">
+                    <div padding text-center class="a1-width-100"> Kết quả XSMB </div>
+                </ion-row>
+                <ion-row class="a-row-item" *ngFor="let elm of northLottery">
+                    <ion-col col-2 class="a3-container a3-items-center a3-justify-center a-border-right n-red-text">{{elm.title}}</ion-col>
+                    <ion-col *ngIf="elm.numOfPrize==6; else elseblock">
+                        <ion-row>
+                            <ion-col [class.a-border-right]="j!= elm.numOfPrize-1 && j!= elm.numOfPrize/2-1 " [class.a-border-bottom]="j<= elm.numOfPrize/2-1" col-4 *ngFor="let code of elm.code; let j=index" text-center>
+                                {{code}}
+                            </ion-col>
+                        </ion-row>
+                    </ion-col>
+                    <ng-template #elseblock>
+                        <ion-col [class.a-border-right]="j<elm.numOfPrize-1" *ngFor="let code of elm.code; let j=index" text-center>
+                            {{code}}
+                        </ion-col>
+                    </ng-template>
+                </ion-row>
+            </ion-grid>
+        </div>
+
+        <div *ngIf="type==4" class="a-main-segment-content vietllot ">
+            <ion-row class="a-row-header">
+                <div padding text-center class="a1-width-100"> Kết quả xổ số Vietlott </div>
+            </ion-row>
+            <div class="vietllot-content ">
+                <div class="vietlott-cell" *ngFor="let digi of vietlottArr; let i = index">
+                    <span>{{digi}}</span>
+                </div>
+            </div>
+        </div>
+        <ion-grid *ngIf="type==1" no-padding class="n-margin-top">
+            <ion-row text-center class="n-red-title">
+                <div class="a3-container a3-items-center a3-justify-center a1-fill-parent n-col-item">Loto Trực Tiếp</div>
+            </ion-row>
+            <ion-row class="a-border-left">
+                <ion-col col-2 *ngFor="let loto of northLoto.lotos" class="a3-container a3-items-center a3-justify-center a-border-right a-border-bottom n-col-item">
+                    {{loto}}
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-grid *ngIf="type==1" no-padding class="n-margin-top">
+            <ion-row>
+                <ion-col style="padding-right: 4px;">
+                    <ion-row text-center class="n-red-title">
+                        <ion-col col-4>Đầu</ion-col>
+                        <ion-col>Loto</ion-col>
+                    </ion-row>
+                    <ion-row class="a-row-item" *ngFor="let elm of northLoto.head; let i = index">
+                        <ion-col col-4 text-center class="n-red-text a-border-right">{{i}}</ion-col>
+                        <ion-col class="n-grey-text">
+                            <span *ngFor="let loto of elm;">
+                                            {{loto}}
+                        </span>
+                        </ion-col>
+                    </ion-row>
+
+                </ion-col>
+                <ion-col style="padding-left: 4px;">
+                    <ion-row text-center class="n-red-title">
+                        <ion-col col-4>Đuôi</ion-col>
+                        <ion-col>Loto</ion-col>
+                    </ion-row>
+                    <ion-row class="a-row-item" *ngFor="let elm of northLoto.back; let i = index">
+                        <ion-col col-4 text-center class="n-red-text a-border-right">{{i}}</ion-col>
+                        <ion-col class="n-grey-text">
+                            <span *ngFor="let loto of elm;">
+                                            {{loto}}
+                        </span>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <div padding></div>
+    </div>
+</ion-content>

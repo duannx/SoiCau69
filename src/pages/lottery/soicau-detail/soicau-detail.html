@@ -1,0 +1,60 @@
+<ion-content no-bounce style="width: 100%; height: 100%">
+
+    <div class="a1-header-height a3-container a3-justify-start a3-items-center m-header ">
+        <div class="a3-container modal-button" padding (click)="onClickBack()">
+            <ion-icon name="ios-arrow-back-outline" class="header-button-icon"></ion-icon>
+        </div>
+        <div class="m-header-title">Chi tiết cầu loto</div>
+        <div class="a3-container modal-button" padding>
+        </div>
+    </div>
+    <div class="a-inputs-controller">
+        <ion-grid>
+            <ion-row>
+                <ion-col (click)="onClickPickPosition()">
+                    <div style="padding-bottom:10px">Chọn vị trí</div>
+                    <div class="a-input a3-container a3-justify-between">
+                        <div>{{selectedPositon}}</div>
+                        <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+                    </div>
+                </ion-col>
+
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div class="a-main-segment-content" *ngFor="let day of lotteryResult; let k=index">
+        <ion-grid no-padding>
+            <ion-row class="a-row-header">
+                <div padding text-center class="a1-width-100"> Kết quả {{inputs.category.name}} ngày {{getViewDate(day.time)}} </div>
+            </ion-row>
+            <ion-row class="a-row-item" *ngFor="let elm of day.lottery; let i=index" [hidden]="elm.numOfPrize == 0">
+                <ion-col col-2 class="a3-container a3-items-center a3-justify-center a-border-right n-red-text">{{elm.title}}</ion-col>
+                <ion-col *ngIf="elm.numOfPrize>=6; else elseblock">
+                    <ion-row>
+                        <ion-col #dynamicCol [class.a-border-right]="j!= elm.numOfPrize-1 && j!= elm.numOfPrize/2-1 " [class.a-border-bottom]="j<= elm.numOfPrize/2-1" [attr.num-col]="elm.numOfPrize" *ngFor="let code of elm.code; let j=index" text-center>
+                            <!--<ion-col [class.a-border-right]="j!= elm.numOfPrize-1 && j!= elm.numOfPrize/2-1 " [class.a-border-bottom]="j<= elm.numOfPrize/2-1" col-4 *ngFor="let code of elm.code; let j=index" text-center>-->
+                            <div [innerHTML]="getCodeFormated(i,j,code)"></div>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+                <ng-template #elseblock>
+                    <ion-col [class.a-border-right]="j<elm.numOfPrize-1" *ngFor="let code of elm.code; let j=index" text-center>
+                        <div [innerHTML]="getCodeFormated(i,j,code)"></div>
+                    </ion-col>
+                </ng-template>
+            </ion-row>
+        </ion-grid>
+        <ion-grid no-padding class="n-margin-top">
+            <ion-row text-center class="n-red-title">
+                <div class="a3-container a3-items-center a3-justify-center a1-fill-parent n-col-item">Loto Trực Tiếp ngày {{getViewDate(day.time)}}</div>
+            </ion-row>
+            <ion-row class="a-border-left">
+                <ion-col col-2 *ngFor="let loto of day.lotos" class="a3-container a3-items-center a3-justify-center a-border-right a-border-bottom n-col-item">
+                    <div [innerHTML]="getLotoFormated(k, loto)"></div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+    <div padding></div>
+</ion-content>

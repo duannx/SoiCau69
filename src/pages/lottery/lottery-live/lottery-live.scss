@@ -1,0 +1,20 @@
+page-lottery-live {
+  .a-iframe-xoso {
+    width: 100%;
+    height: 100%;
+  }
+  .m-content {
+    width: 100vw;
+    max-width: 100vw;
+    height: $content-height;
+    overflow: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+  }
+  iframe {
+    width: 1px;
+    min-width: 100%;
+    *width: 100%;
+  }
+}

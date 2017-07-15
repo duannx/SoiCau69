@@ -1,0 +1,1271 @@
+<ion-content id="a-main">
+    <div class="a1-header-height a3-container a3-justify-between a3-items-center m-header a1-z-10">
+        <div class="a3-container" padding style="order:0;" (tap)="onClickOpenMenu()">
+            <ion-icon name="ios-menu-outline" class="header-button-icon"></ion-icon>
+        </div>
+        <div class="m-header-title">Kết quả xổ số</div>
+        <div padding>
+            <ion-icon name="ios-notifications-outline" class="header-button-icon"></ion-icon>
+        </div>
+    </div>
+
+    <div class="a1-content-height">
+        <div class="segment-container a1-z-10">
+            <div class="segment-button" *ngFor="let lottery of mLotteryDBCenter.lotteries" (tap)="onClickLottery(lottery)" [class.segment-button-active]="datas.mSelectedLotteryID==lottery.id">{{lottery.title}}</div>
+        </div>
+
+        <div text-center id="a-header-content">
+            <div class="a3-container a3-items-center a3-justify-between a-header">
+                <div class="a-icon" (tap)="onClickPreviousDay()">
+                    <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+                </div>
+                <div (tap)="onClickPickDay()">{{datas.mTypeStr}} ngày {{datas.mDateStr}}</div>
+                <div class="a-icon" (tap)="onClickNextDay()">
+                    <ion-icon name="ios-arrow-dropright-outline"></ion-icon>
+                </div>
+            </div>
+        </div>
+
+        <div id="a-scroll-content" (scroll)="onScroll($event)">
+            <div style="height:40px"></div>
+            <div class="a-main-segment">
+
+                <!--XSMB-->
+
+                <div class="a-main-segment-content" *ngIf="datas.mSelectedLotteryID == mLotteryConstants.XSMB">
+
+                    <ion-grid class="big-grid" *ngIf="mXSResult" no-padding>
+                        <ion-row class="big-title">
+                            <div padding text-center class="a1-width-100"> Kết quả XSMB ngày {{datas.mDateStr}}</div>
+                        </ion-row>
+                        <div class="grid-content">
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center a-border-right n-red-text">ĐB</ion-col>
+                                <ion-col text-center class="n-red-text">
+                                    <div *ngIf="mXSResult.db.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.db.xoso}}</div>
+                                    <div *ngIf="mXSResult.db.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center a-border-right n-grey-text">G-1</ion-col>
+                                <ion-col text-center>
+                                    <div *ngIf="mXSResult.g1.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g1.xoso}}</div>
+                                    <div *ngIf="mXSResult.g1.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center a-border-right n-grey-text">G-2</ion-col>
+                                <ion-col text-center class="a-border-right">
+                                    <div *ngIf="mXSResult.g2[0].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g2[0].xoso}}</div>
+                                    <div *ngIf="mXSResult.g2[0].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                                <ion-col text-center>
+                                    <div *ngIf="mXSResult.g2[1].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g2[1].xoso}}</div>
+                                    <div *ngIf="mXSResult.g2[1].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center a-border-right n-grey-text">G-3</ion-col>
+                                <ion-col no-border>
+                                    <ion-row class="a-border-bottom">
+                                        <ion-col no-padding text-center class="a-border-right n-col-item">
+                                            <div *ngIf="mXSResult.g3[0].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g3[0].xoso}}</div>
+                                            <div *ngIf="mXSResult.g3[0].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                                <ion-spinner name="ios-small"></ion-spinner>
+                                            </div>
+                                        </ion-col>
+                                        <ion-col no-padding text-center class="a-border-right n-col-item">
+                                            <div *ngIf="mXSResult.g3[1].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g3[1].xoso}}</div>
+                                            <div *ngIf="mXSResult.g3[1].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                                <ion-spinner name="ios-small"></ion-spinner>
+                                            </div>
+                                        </ion-col>
+                                        <ion-col no-padding text-center class="n-col-item">
+                                            <div *ngIf="mXSResult.g3[2].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g3[2].xoso}}</div>
+                                            <div *ngIf="mXSResult.g3[2].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                                <ion-spinner name="ios-small"></ion-spinner>
+                                            </div>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row>
+                                        <ion-col no-padding text-center class="a-border-right n-col-item">
+                                            <div *ngIf="mXSResult.g3[3].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g3[3].xoso}}</div>
+                                            <div *ngIf="mXSResult.g3[3].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                                <ion-spinner name="ios-small"></ion-spinner>
+                                            </div>
+                                        </ion-col>
+                                        <ion-col no-padding text-center class="a-border-right n-col-item">
+                                            <div *ngIf="mXSResult.g3[4].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g3[4].xoso}}</div>
+                                            <div *ngIf="mXSResult.g3[4].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                                <ion-spinner name="ios-small"></ion-spinner>
+                                            </div>
+                                        </ion-col>
+                                        <ion-col no-padding text-center class="n-col-item">
+                                            <div *ngIf="mXSResult.g3[5].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g3[5].xoso}}</div>
+                                            <div *ngIf="mXSResult.g3[5].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                                <ion-spinner name="ios-small"></ion-spinner>
+                                            </div>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center a-border-right n-grey-text">G-4</ion-col>
+                                <ion-col text-center class="a-border-right">
+                                    <div *ngIf="mXSResult.g4[0].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g4[0].xoso}}</div>
+                                    <div *ngIf="mXSResult.g4[0].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                                <ion-col text-center class="a-border-right">
+                                    <div *ngIf="mXSResult.g4[1].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g4[1].xoso}}</div>
+                                    <div *ngIf="mXSResult.g4[1].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                                <ion-col text-center class="a-border-right">
+                                    <div *ngIf="mXSResult.g4[2].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g4[2].xoso}}</div>
+                                    <div *ngIf="mXSResult.g4[2].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                                <ion-col text-center>
+                                    <div *ngIf="mXSResult.g4[3].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g4[3].xoso}}</div>
+                                    <div *ngIf="mXSResult.g4[3].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center a-border-right n-grey-text">G-5</ion-col>
+                                <ion-col no-border>
+                                    <ion-row class="a-border-bottom">
+                                        <ion-col no-padding text-center class="a-border-right n-col-item">
+                                            <div *ngIf="mXSResult.g5[0].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g5[0].xoso}}</div>
+                                            <div *ngIf="mXSResult.g5[0].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                                <ion-spinner name="ios-small"></ion-spinner>
+                                            </div>
+                                        </ion-col>
+                                        <ion-col no-padding text-center class="a-border-right n-col-item">
+                                            <div *ngIf="mXSResult.g5[1].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g5[1].xoso}}</div>
+                                            <div *ngIf="mXSResult.g5[1].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                                <ion-spinner name="ios-small"></ion-spinner>
+                                            </div>
+                                        </ion-col>
+                                        <ion-col no-padding text-center class="n-col-item">
+                                            <div *ngIf="mXSResult.g5[2].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g5[2].xoso}}</div>
+                                            <div *ngIf="mXSResult.g5[2].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                                <ion-spinner name="ios-small"></ion-spinner>
+                                            </div>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row>
+                                        <ion-col no-padding text-center class="a-border-right n-col-item">
+                                            <div *ngIf="mXSResult.g5[3].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g5[3].xoso}}</div>
+                                            <div *ngIf="mXSResult.g5[3].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                                <ion-spinner name="ios-small"></ion-spinner>
+                                            </div>
+                                        </ion-col>
+                                        <ion-col no-padding text-center class="a-border-right n-col-item">
+                                            <div *ngIf="mXSResult.g5[4].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g5[4].xoso}}</div>
+                                            <div *ngIf="mXSResult.g5[4].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                                <ion-spinner name="ios-small"></ion-spinner>
+                                            </div>
+                                        </ion-col>
+                                        <ion-col no-padding text-center class="n-col-item">
+                                            <div *ngIf="mXSResult.g5[5].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g5[5].xoso}}</div>
+                                            <div *ngIf="mXSResult.g5[5].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                                <ion-spinner name="ios-small"></ion-spinner>
+                                            </div>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col text-center col-2 class="a-border-right n-grey-text">G-6</ion-col>
+                                <ion-col text-center class="a-border-right">
+                                    <div *ngIf="mXSResult.g6[0].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g6[0].xoso}}</div>
+                                    <div *ngIf="mXSResult.g6[0].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                                <ion-col text-center class="a-border-right">
+                                    <div *ngIf="mXSResult.g6[1].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g6[1].xoso}}</div>
+                                    <div *ngIf="mXSResult.g6[1].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                                <ion-col text-center>
+                                    <div *ngIf="mXSResult.g6[2].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g6[2].xoso}}</div>
+                                    <div *ngIf="mXSResult.g6[2].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col text-center col-2 class="a-border-right n-grey-text">G-7</ion-col>
+                                <ion-col text-center class="a-border-right">
+                                    <div *ngIf="mXSResult.g7[0].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g7[0].xoso}}</div>
+                                    <div *ngIf="mXSResult.g7[0].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                                <ion-col text-center class="a-border-right">
+                                    <div *ngIf="mXSResult.g7[1].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g7[1].xoso}}</div>
+                                    <div *ngIf="mXSResult.g7[1].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                                <ion-col text-center class="a-border-right">
+                                    <div *ngIf="mXSResult.g7[2].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g7[2].xoso}}</div>
+                                    <div *ngIf="mXSResult.g7[2].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                                <ion-col text-center>
+                                    <div *ngIf="mXSResult.g7[3].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSResult.g7[3].xoso}}</div>
+                                    <div *ngIf="mXSResult.g7[3].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                        </div>
+                    </ion-grid>
+
+                    <ion-grid *ngIf="mLotoMB" no-padding class="n-margin-top big-grid">
+                        <ion-row text-center class="big-title">
+                            <div class="a3-container a3-items-center a3-justify-center a1-fill-parent n-col-item">Loto Trực Tiếp</div>
+                        </ion-row>
+                        <div class="grid-content">
+
+                            <ion-row class="a-border-left loto-block">
+                                <ion-col col-2 *ngFor="let loto of mLotoMB.loto" class="a3-container a3-items-center a3-justify-center a-border-right a-border-bottom n-col-item">
+                                    {{loto.loto}}
+                                </ion-col>
+                            </ion-row>
+                            <div class="divider"></div>
+                            <ion-row class="a-row-item" *ngFor="let lotoDau of mLotoMB.lotoDau; let i= index">
+                                <ion-col col-3 text-center class="a-border-right">Đầu {{i}}</ion-col>
+                                <ion-col no-border>
+                                    <ion-row>
+                                        <ion-col class="n-grey-text" *ngFor="let loto of lotoDau" [attr.col-2]="lotoDau.length > 6 ? '' : null" text-center>
+                                            <span>
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="frequen">{{loto.frequency}}</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-col>
+                            </ion-row>
+                            <div class="divider"></div>
+                            <ion-row class="a-row-item" *ngFor="let lotoDuoi of mLotoMB.lotoDuoi; let i= index">
+                                <ion-col col-3 text-center class="a-border-right">Đuôi {{i}}</ion-col>
+                                <ion-col no-border>
+                                    <ion-row>
+                                        <ion-col class="n-grey-text" *ngFor="let loto of lotoDuoi" [attr.col-2]="lotoDuoi.length > 6 ? '' : null" text-center>
+                                            <span>
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="frequen">{{loto.frequency}}</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-col>
+                            </ion-row>
+                            <!--<ion-row class="a-row-item">
+                                <ion-col col-3 text-center class="a-border-right">Đầu 1</ion-col>
+                                <ion-col class="n-grey-text">
+                                    <span *ngFor="let loto of mLotoMB.dau1">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                    </span>
+                                </ion-col>
+                            </ion-row>-->
+                            <!--<ion-row>
+                                <ion-col style="padding-right: 4px;">
+                                    <ion-row text-center class="title">
+                                        <ion-col col-4>Đầu</ion-col>
+                                        <ion-col>Loto</ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">0</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.dau0">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">1</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.dau1">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">2</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.dau2">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">3</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.dau3">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">4</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.dau4">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">5</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.dau5">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">6</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.dau6">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">7</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.dau7">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">8</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.dau8">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">9</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.dau9">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-col>
+                                <ion-col style="padding-left: 4px;">
+                                    <ion-row text-center class="title">
+                                        <ion-col col-4>Đuôi</ion-col>
+                                        <ion-col>Loto</ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">0</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.duoi0">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">1</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.duoi1">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">2</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.duoi2">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">3</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.duoi3">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">4</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.duoi4">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">5</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.duoi5">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">6</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.duoi6">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">7</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.duoi7">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">8</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.duoi8">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="a-row-item">
+                                        <ion-col col-4 text-center class="n-red-text a-border-right">9</ion-col>
+                                        <ion-col class="n-grey-text">
+                                            <span *ngFor="let loto of mLotoMB.duoi9">
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-col>
+                            </ion-row>-->
+                        </div>
+                    </ion-grid>
+
+
+
+                    <ion-grid *ngIf="mDienToan123" no-padding class="n-margin-top big-grid">
+                        <ion-row class="big-title">
+                            <div padding text-center class="a1-width-100 n">Điện toán 123 ngày {{datas.mDateStr}}</div>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col text-center class="n-red-text a-border-right n-medium-text">
+                                <div *ngIf="mDienToan123.bs1.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100">{{mDienToan123.bs1.xoso}}</div>
+                                <div *ngIf="mDienToan123.bs1.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                    <ion-spinner name="ios-small"></ion-spinner>
+                                </div>
+                            </ion-col>
+                            <ion-col text-center class="n-red-text a-border-right n-medium-text">
+                                <div *ngIf="mDienToan123.bs2.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100">{{mDienToan123.bs2.xoso}}</div>
+                                <div *ngIf="mDienToan123.bs2.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                    <ion-spinner name="ios-small"></ion-spinner>
+                                </div>
+                            </ion-col>
+                            <ion-col text-center class="n-red-text n-medium-text">
+                                <div *ngIf="mDienToan123.bs3.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100">{{mDienToan123.bs3.xoso}}</div>
+                                <div *ngIf="mDienToan123.bs3.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                    <ion-spinner name="ios-small"></ion-spinner>
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+
+                    <ion-grid no-padding class="n-margin-top big-grid" *ngIf="mDienToan636.mDay == AVAILABLE636[0] || mDienToan636.mDay == AVAILABLE636[1]">
+                        <ion-row class="big-title">
+                            <div padding text-center class="a1-width-100 n">Điện toán 6x36 ngày {{datas.mDateStr}}</div>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col text-center class="n-red-text a-border-right n-medium-text">
+                                <span *ngIf="mDienToan636.bs1.state == STATE_NONE">{{mDienToan636.bs1.xoso}}</span>
+                                <div *ngIf="mDienToan636.bs1.state == STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                    <ion-spinner name="ios-small"></ion-spinner>
+                                </div>
+                            </ion-col>
+                            <ion-col text-center class="n-red-text a-border-right n-medium-text">
+                                <span *ngIf="mDienToan636.bs2.state == STATE_NONE">{{mDienToan636.bs2.xoso}}</span>
+                                <div *ngIf="mDienToan636.bs2.state == STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                    <ion-spinner name="ios-small"></ion-spinner>
+                                </div>
+                            </ion-col>
+                            <ion-col text-center class="n-red-text a-border-right n-medium-text">
+                                <span *ngIf="mDienToan636.bs3.state == STATE_NONE">{{mDienToan636.bs3.xoso}}</span>
+                                <div *ngIf="mDienToan636.bs3.state == STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                    <ion-spinner name="ios-small"></ion-spinner>
+                                </div>
+                            </ion-col>
+                            <ion-col text-center class="n-red-text a-border-right n-medium-text">
+                                <span *ngIf="mDienToan636.bs4.state == STATE_NONE">{{mDienToan636.bs4.xoso}}</span>
+                                <div *ngIf="mDienToan636.bs4.state == STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                    <ion-spinner name="ios-small"></ion-spinner>
+                                </div>
+                            </ion-col>
+                            <ion-col text-center class="n-red-text a-border-right n-medium-text">
+                                <span *ngIf="mDienToan636.bs5.state == STATE_NONE">{{mDienToan636.bs5.xoso}}</span>
+                                <div *ngIf="mDienToan636.bs5.state == STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                    <ion-spinner name="ios-small"></ion-spinner>
+                                </div>
+                            </ion-col>
+                            <ion-col text-center class="n-red-text n-medium-text">
+                                <span *ngIf="mDienToan636.bs6.state == STATE_NONE">{{mDienToan636.bs6.xoso}}</span>
+                                <div *ngIf="mDienToan636.bs6.state == STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                    <ion-spinner name="ios-small"></ion-spinner>
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+
+                    <ion-grid *ngIf="mThanTai" no-padding class="n-margin-top big-grid">
+                        <ion-row class="big-title">
+                            <div padding text-center class="a1-width-100">Thần tài ngày {{datas.mDateStr}}</div>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col text-center class="n-red-text a-border-right n-medium-text">
+                                <div *ngIf="mThanTai.lottery.state == STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100">{{mThanTai.lottery.xoso}}</div>
+                                <div *ngIf="mThanTai.lottery.state == STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                    <ion-spinner name="ios-small"></ion-spinner>
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+
+                    <ion-grid *ngIf="mThongKe" no-padding class="n-margin-top a-border-bottom big-grid">
+                        <ion-row class="big-title">
+                            <div text-center class="a1-width-100 n-padding">Thống kê nhanh XSMB ngày {{mThongKe.mDateStr}}</div>
+                        </ion-row>
+                        <ion-row>
+                            <div class="a1-width-100">
+                                <ion-row padding class=" a-border-right">
+                                    <div>10 bộ số xuất hiện <span class="n-red-text">nhiều</span> nhất trong 40 ngày qua</div>
+                                </ion-row>
+
+                                <ion-row *ngIf="mThongKe.nhieunhat.length > 0" class="a-border-left a-border-right a-main-segment-content">
+                                    <ion-col col-4 *ngFor="let loto of mThongKe.nhieunhat" no-border padding-5>
+                                        <ion-row class="left-radius-20">
+                                            <ion-col col-5 class="x left-radius-20 n-left-loto-item">{{loto.loto}}</ion-col>
+                                            <ion-col class="n-right-loto-item">{{loto.frequency}} lần</ion-col>
+                                        </ion-row>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row *ngIf="mThongKe.nhieunhat.length <= 0">
+                                    <div class="a3-container a3-items-center a3-justify-center a1-fill-parent">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-row>
+
+                                <!-- <div class="mChartContainer">
+                                    <canvas class="canvasChart" id="mChart1"></canvas>
+                                </div> -->
+                            </div>
+                        </ion-row>
+                        <div class="divider"></div>
+                        <ion-row>
+                            <div class="a1-width-100">
+                                <ion-row padding class=" a-border-right">
+                                    <div>10 bộ số xuất hiện <span class="n-red-text">ít</span> nhất trong 40 ngày qua</div>
+                                </ion-row>
+                                <ion-row *ngIf="mThongKe.itnhat.length > 0" class="a-border-left a-border-right a-main-segment-content">
+                                    <ion-col col-4 *ngFor="let loto of mThongKe.itnhat" no-border padding-5>
+                                        <ion-row class="left-radius-20">
+                                            <ion-col col-5 class="n-left-loto-item left-radius-20">{{loto.loto}}</ion-col>
+                                            <ion-col class="n-right-loto-item">{{loto.frequency}} lần</ion-col>
+                                        </ion-row>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row *ngIf="mThongKe.itnhat.length <= 0">
+                                    <div class="a3-container a3-items-center a3-justify-center a1-fill-parent">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-row>
+                                <!-- <div class="mChartContainer">
+                                    <canvas class="canvasChart" id="mChart2"></canvas>
+                                </div> -->
+                            </div>
+                        </ion-row>
+                        <div class="divider"></div>
+                        <ion-row>
+                            <div class="a1-width-100">
+                                <ion-row padding class=" a-border-right">
+                                    <div>Những bộ số không ra từ 10 ngày trở lên (<span class="n-red-text">Lô gan</span>)</div>
+                                </ion-row>
+                                <ion-row *ngIf="mThongKe.logan.length > 0" class="a-border-left a-border-right a-main-segment-content">
+                                    <ion-col col-4 *ngFor="let loto of mThongKe.logan" no-border padding-5>
+                                        <ion-row class="left-radius-20">
+                                            <ion-col col-5 class="n-left-loto-item left-radius-20">{{loto.loto}}</ion-col>
+                                            <ion-col class="n-right-loto-item">{{loto.frequency}} ngày</ion-col>
+                                        </ion-row>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row *ngIf="mThongKe.logan.length <= 0">
+                                    <div class="a3-container a3-items-center a3-justify-center a1-fill-parent">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-row>
+                                <!-- <div class="mChartContainer">
+                                    <canvas class="canvasChart" id="mChart3"></canvas>
+                                </div> -->
+                            </div>
+                        </ion-row>
+                        <div class="divider"></div>
+                        <ion-row>
+                            <div class="a1-width-100">
+                                <ion-row padding class=" a-border-right">
+                                    <div>Thống kê theo <span class="n-red-text">đầu</span> số trong 40 ngày qua</div>
+                                </ion-row>
+                                <ion-row *ngIf="mThongKe.dauloto.length > 0" class="a-border-left a-border-right a-main-segment-content">
+                                    <ion-col col-6 *ngFor="let loto of mThongKe.dauloto" no-border padding-5>
+                                        <ion-row class="left-radius-20">
+                                            <ion-col class="n-left-loto-item left-radius-20" col-6>Đầu {{loto.code}}</ion-col>
+                                            <ion-col class="n-right-loto-item">{{loto.frequency}} lần</ion-col>
+                                        </ion-row>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row *ngIf="mThongKe.dauloto.length <= 0">
+                                    <div class="a3-container a3-items-center a3-justify-center a1-fill-parent">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-row>
+                                <!-- <div class="mChartContainer">
+                                    <canvas class="canvasChart" id="mChart4"></canvas>
+                                </div> -->
+                            </div>
+                        </ion-row>
+                        <div class="divider"></div>
+                        <ion-row>
+                            <div class="a1-width-100">
+                                <ion-row padding class=" a-border-right">
+                                    <div>Thống kê theo <span class="n-red-text">đuôi</span> số trong 40 ngày qua</div>
+                                </ion-row>
+                                <ion-row *ngIf="mThongKe.duoiloto.length > 0" class="a-border-left a-border-right a-main-segment-content">
+                                    <ion-col col-6 *ngFor="let loto of mThongKe.duoiloto" no-border padding-5>
+                                        <ion-row class="left-radius-20">
+                                            <ion-col class="n-left-loto-item left-radius-20" col-6>Đuôi {{loto.code}}</ion-col>
+                                            <ion-col class="n-right-loto-item">{{loto.frequency}} lần</ion-col>
+                                        </ion-row>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row *ngIf="mThongKe.duoiloto.length <= 0">
+                                    <div class="a3-container a3-items-center a3-justify-center a1-fill-parent">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-row>
+                                <!-- <div class="mChartContainer">
+                                    <canvas class="canvasChart" id="mChart5"></canvas>
+                                </div> -->
+                            </div>
+                        </ion-row>
+                    </ion-grid>
+
+                    <ion-grid no-padding class="n-margin-top big-grid">
+                        <ion-row class="big-title">
+                            <div text-center class="a1-width-100 n-medium-text n-padding">Xổ số các tỉnh Miền Bắc</div>
+                        </ion-row>
+                        <ion-row>
+                            <div *ngFor="let category of categories" class="category" (tap)="OnClickViewByCategory(category.id, category.name)">{{category.name}}</div>
+                        </ion-row>
+
+                    </ion-grid>
+
+                </div>
+
+                <!--XSMT-->
+                <div class="a-main-segment-content" *ngIf="datas.mSelectedLotteryID == mLotteryConstants.XSMT">
+                    <ion-grid class="n-padding-0 big-grid">
+                        <ion-row class="big-title">
+                            <div padding text-center class="a1-width-100">Xổ số Miền Trung ngày {{datas.mDateStr}}</div>
+                        </ion-row>
+                        <div class="grid-content">
+                            <ion-row class="a-row-item n-red-text">
+                                <ion-col col-2 text-center class="a3-container a3-items-center a3-justify-center">Tỉnh</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a3-container a3-items-center a3-justify-center a-border-left">{{mXSMTMN.city}}</ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center n-grey-text">G-8</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a-border-left">
+                                    <div *ngIf="mXSMTMN.g8.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSMTMN.g8.xoso}}</div>
+                                    <div *ngIf="mXSMTMN.g8.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center n-grey-text">G-7</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a-border-left">
+                                    <div *ngIf="mXSMTMN.g7.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSMTMN.g7.xoso}}</div>
+                                    <div *ngIf="mXSMTMN.g7.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center n-grey-text">G-6</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a-border-left">
+                                    <ion-row *ngFor="let g6 of mXSMTMN.g6" class="a3-justify-center">
+                                        <div *ngIf="g6.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{g6.xoso}}</div>
+                                        <div *ngIf="g6.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                            <ion-spinner name="ios-small"></ion-spinner>
+                                        </div>
+                                    </ion-row>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center n-grey-text">G-5</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a-border-left">
+                                    <div *ngIf="mXSMTMN.g5.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSMTMN.g5.xoso}}</div>
+                                    <div *ngIf="mXSMTMN.g5.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center n-grey-text">G-4</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a-border-left">
+                                    <ion-row *ngFor="let g4 of mXSMTMN.g4" class="a3-justify-center">
+                                        <div *ngIf="g4.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{g4.xoso}}</div>
+                                        <div *ngIf="g4.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                            <ion-spinner name="ios-small"></ion-spinner>
+                                        </div>
+                                    </ion-row>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center n-grey-text">G-3</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a-border-left">
+                                    <ion-row *ngFor="let g3 of mXSMTMN.g3" class="a3-justify-center">
+                                        <div *ngIf="g3.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{g3.xoso}}</div>
+                                        <div *ngIf="g3.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                            <ion-spinner name="ios-small"></ion-spinner>
+                                        </div>
+                                    </ion-row>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center n-grey-text">G-2</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a-border-left">
+                                    <div *ngIf="mXSMTMN.g2.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSMTMN.g2.xoso}}</div>
+                                    <div *ngIf="mXSMTMN.g2.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center n-grey-text">G-1</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a-border-left">
+                                    <div *ngIf="mXSMTMN.g1.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSMTMN.g1.xoso}}</div>
+                                    <div *ngIf="mXSMTMN.g1.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item n-red-text">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center">ĐB</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a-border-left">
+                                    <div *ngIf="mXSMTMN.db.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSMTMN.db.xoso}}</div>
+                                    <div *ngIf="mXSMTMN.db.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                        </div>
+                    </ion-grid>
+
+                    <ion-grid no-padding class="n-margin-top big-grid">
+                        <ion-row class="big-title">
+                            <div text-center class="a1-width-100 n-padding">Thống kê Loto Trực Tiếp</div>
+                        </ion-row>
+                        <ion-row class="a-row-item" style="padding: 0 10px">
+                            <ion-col text-center *ngFor="let city of mLotoMTMN.lotoMTMN" (click)="filterLotoMT = city.city_id" [class.active]="city.city_id == filterLotoMT" class="segment-category">{{city.city}}</ion-col>
+                        </ion-row>
+                        <div class="grid-content" *ngFor=" let city of mLotoMTMN.lotoMTMN " [hidden]="city.city_id != filterLotoMT">
+                            <ion-row class="a-row-item " *ngFor="let lotoDau of city.lotoDau; let i=index ">
+                                <ion-col col-3 text-center class="a-border-right ">Đầu {{i}}</ion-col>
+                                <ion-col no-border>
+                                    <ion-row>
+                                        <ion-col class="n-grey-text " *ngFor="let loto of lotoDau " [attr.col-2]="lotoDau.length> 6 ? '' : null" text-center>
+                                            <span>
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="frequen">{{loto.frequency}}</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-col>
+                            </ion-row>
+                            <div class="divider"></div>
+                        </div>
+                        <div class="grid-content" *ngFor=" let city of mLotoMTMN.lotoMTMN " [hidden]="city.city_id != filterLotoMT">
+                            <ion-row class="a-row-item " *ngFor="let lotoDuoi of city.lotoDuoi; let i=index ">
+                                <ion-col col-3 text-center class="a-border-right ">Đuôi {{i}}</ion-col>
+                                <ion-col no-border>
+                                    <ion-row>
+                                        <ion-col class="n-grey-text " *ngFor="let loto of lotoDuoi " [attr.col-2]="lotoDuoi.length> 6 ? '' : null" text-center>
+                                            <span>
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="frequen">{{loto.frequency}}</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-col>
+                            </ion-row>
+                            <div class="divider"></div>
+                        </div>
+                        <!--<ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">0</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau0">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">1</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau1">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">2</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau2">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">3</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau3">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">4</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau4">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">5</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau5">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">6</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau6">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">7</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau7">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">8</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau8">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">9</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau9">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>-->
+                    </ion-grid>
+
+                    <ion-grid no-padding class="n-margin-top big-grid">
+                        <ion-row class="big-title">
+                            <div text-center class="a1-width-100 n-padding">Xổ số các tỉnh Miền Trung</div>
+                        </ion-row>
+                        <ion-row>
+                            <div *ngFor="let category of categories" class="category" (tap)="OnClickViewByCategory(category.id, category.name)">{{category.name}}</div>
+                        </ion-row>
+                    </ion-grid>
+                </div>
+                <!--XSMN-->
+                <div class="a-main-segment-content" *ngIf="datas.mSelectedLotteryID == mLotteryConstants.XSMN">
+
+                    <ion-grid class="n-padding-0 big-grid">
+                        <ion-row class="big-title">
+                            <div padding text-center class="a1-width-100">Xổ số Miền Nam ngày {{datas.mDateStr}}</div>
+                        </ion-row>
+                        <div class="grid-content">
+                            <ion-row class="a-row-item n-red-text">
+                                <ion-col col-2 text-center class="a3-container a3-items-center a3-justify-center">Tỉnh</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a3-container a3-items-center a3-justify-center a-border-left">{{mXSMTMN.city}}</ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center n-grey-text">G-8</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a-border-left">
+                                    <div *ngIf="mXSMTMN.g8.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSMTMN.g8.xoso}}</div>
+                                    <div *ngIf="mXSMTMN.g8.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center n-grey-text">G-7</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a-border-left">
+                                    <div *ngIf="mXSMTMN.g7.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSMTMN.g7.xoso}}</div>
+                                    <div *ngIf="mXSMTMN.g7.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center n-grey-text">G-6</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a-border-left">
+                                    <ion-row *ngFor="let g6 of mXSMTMN.g6" class="a3-justify-center">
+                                        <div *ngIf="g6.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{g6.xoso}}</div>
+                                        <div *ngIf="g6.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                            <ion-spinner name="ios-small"></ion-spinner>
+                                        </div>
+                                    </ion-row>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center n-grey-text">G-5</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a-border-left">
+                                    <div *ngIf="mXSMTMN.g5.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSMTMN.g5.xoso}}</div>
+                                    <div *ngIf="mXSMTMN.g5.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center n-grey-text">G-4</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a-border-left">
+                                    <ion-row *ngFor="let g4 of mXSMTMN.g4" class="a3-justify-center">
+                                        <div *ngIf="g4.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{g4.xoso}}</div>
+                                        <div *ngIf="g4.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                            <ion-spinner name="ios-small"></ion-spinner>
+                                        </div>
+                                    </ion-row>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center n-grey-text">G-3</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a-border-left">
+                                    <ion-row *ngFor="let g3 of mXSMTMN.g3" class="a3-justify-center">
+                                        <div *ngIf="g3.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{g3.xoso}}</div>
+                                        <div *ngIf="g3.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                            <ion-spinner name="ios-small"></ion-spinner>
+                                        </div>
+                                    </ion-row>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center n-grey-text">G-2</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a-border-left">
+                                    <div *ngIf="mXSMTMN.g2.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSMTMN.g2.xoso}}</div>
+                                    <div *ngIf="mXSMTMN.g2.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center n-grey-text">G-1</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a-border-left">
+                                    <div *ngIf="mXSMTMN.g1.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSMTMN.g1.xoso}}</div>
+                                    <div *ngIf="mXSMTMN.g1.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="a-row-item n-red-text">
+                                <ion-col col-2 class="a3-container a3-items-center a3-justify-center">ĐB</ion-col>
+                                <ion-col text-center *ngFor="let mXSMTMN of XSMTMN.resultLottery" class="a-border-left">
+                                    <div *ngIf="mXSMTMN.db.state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100"> {{mXSMTMN.db.xoso}}</div>
+                                    <div *ngIf="mXSMTMN.db.state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                        </div>
+                    </ion-grid>
+
+                    <ion-grid no-padding class="n-margin-top big-grid">
+                        <ion-row class="big-title">
+                            <div text-center class="a1-width-100 n-padding">Thống kê Loto Trực Tiếp</div>
+                        </ion-row>
+
+                        <ion-row class="a-row-item" style="padding: 0 10px">
+                            <ion-col text-center *ngFor="let city of mLotoMTMN.lotoMTMN" (click)="filterLotoMN = city.city_id" [class.active]="city.city_id == filterLotoMN" class="segment-category">{{city.city}}</ion-col>
+                        </ion-row>
+                        <div class="grid-content" *ngFor=" let city of mLotoMTMN.lotoMTMN " [hidden]="city.city_id != filterLotoMN">
+                            <ion-row class="a-row-item " *ngFor="let lotoDau of city.lotoDau; let i=index ">
+                                <ion-col col-3 text-center class="a-border-right ">Đầu {{i}}</ion-col>
+                                <ion-col no-border>
+                                    <ion-row>
+                                        <ion-col class="n-grey-text " *ngFor="let loto of lotoDau " [attr.col-2]="lotoDau.length> 6 ? '' : null" text-center>
+                                            <span>
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="frequen">{{loto.frequency}}</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-col>
+                            </ion-row>
+                            <div class="divider"></div>
+                        </div>
+                        <div class="grid-content" *ngFor=" let city of mLotoMTMN.lotoMTMN " [hidden]="city.city_id != filterLotoMT">
+                            <ion-row class="a-row-item " *ngFor="let lotoDuoi of city.lotoDuoi; let i=index ">
+                                <ion-col col-3 text-center class="a-border-right ">Đuôi {{i}}</ion-col>
+                                <ion-col no-border>
+                                    <ion-row>
+                                        <ion-col class="n-grey-text " *ngFor="let loto of lotoDuoi " [attr.col-2]="lotoDuoi.length> 6 ? '' : null" text-center>
+                                            <span>
+                                            {{loto.loto}}<span *ngIf="loto.frequency > 1" class="frequen">{{loto.frequency}}</span>
+                                            </span>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-col>
+                            </ion-row>
+                            <div class="divider"></div>
+                        </div>
+
+                        <!--<ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="a3-container a3-items-center a3-justify-center n-red-text">Đầu</ion-col>
+                            <ion-col text-center *ngFor="let city of mLotoMTMN.lotoMTMN" class="a3-container a3-items-center a3-justify-center a-border-left n-red-text">{{city.city}}</ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">0</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau0">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">1</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau1">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">2</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau2">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">3</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau3">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">4</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau4">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">5</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau5">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">6</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau6">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">7</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau7">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">8</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau8">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col col-2 text-center class="n-red-text">9</ion-col>
+                            <ion-col class="a-border-left n-padding-lr" *ngFor="let city of mLotoMTMN.lotoMTMN">
+                                <span *ngFor="let loto of city.dau9">
+                                    {{loto.loto}}<span *ngIf="loto.frequency > 1" class="n-red-text">({{loto.frequency}})</span>
+                                </span>
+                            </ion-col>
+                        </ion-row>-->
+                    </ion-grid>
+
+                    <ion-grid no-padding class="n-margin-top big-grid">
+                        <ion-row class="big-title">
+                            <div text-center class="a1-width-100 n-padding">Xổ số các tỉnh Miền Nam</div>
+                        </ion-row>
+                        <ion-row>
+                            <div *ngFor="let category of categories" class="category" (tap)="OnClickViewByCategory(category.id, category.name)">{{category.name}}</div>
+                        </ion-row>
+                        <!--<ion-row class="a-row-item" style="border-right: 0; border-bottom: 0">
+                            <ion-col col-4 *ngFor="let category of categories" class="a-border-right a-border-bottom n-padding-lr" (tap)="OnClickViewByCategory(category.id, category.name)">{{category.name}}</ion-col>
+                        </ion-row>-->
+                    </ion-grid>
+                </div>
+                <!-- Vietlott -->
+                <div class="a-main-segment-content" *ngIf="datas.mSelectedLotteryID == mLotteryConstants.VIETLOTT">
+                    <ion-grid no-padding>
+                        <ion-row class="big-title">
+                            <div padding text-center class="a1-width-100">KẾT QUẢ XỔ SỐ MEGA 6X45 VIETLOTT</div>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <div class="a1-width-100">
+                                <ion-row>
+                                    <div text-center class="n-red-text n-bold-text a1-width-100">Giá trị Jackpot ước tính</div>
+                                </ion-row>
+                                <ion-row class="a3-justify-center">
+                                    <div id="total-prize">
+                                        <span>
+                                            {{mVietlott.amountStr}} đồng
+                                        </span></div>
+                                </ion-row>
+                                <!-- <ion-row class="a3-justify-center">
+                                    <div class="vietlott-info-text">Kỳ quay thưởng: {{vietlott.turn}}</div>
+                                </ion-row> -->
+                                <ion-row class="a3-justify-center">
+                                    <div class="vietlott-info-text">Xổ số Mega 6X45 ngày {{mVietlott.mDateStr}}</div>
+                                </ion-row>
+                            </div>
+                        </ion-row>
+                        <ion-row class="a-row-item">
+                            <ion-col class="num-container a3-container a3-justify-center a3-items-center">
+                                <div class="num a3-container a3-justify-center a3-items-center" style="background: #2A4980">
+                                    <div *ngIf="mVietlott.lottery[0].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100">{{mVietlott.lottery[0].xoso}}</div>
+                                    <div *ngIf="mVietlott.lottery[0].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </div>
+                            </ion-col>
+                            <ion-col class="num-container a3-container a3-justify-center a3-items-center">
+                                <div class="num a3-container a3-justify-center a3-items-center" style="background: #FF316E">
+                                    <div *ngIf="mVietlott.lottery[1].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100">{{mVietlott.lottery[1].xoso}}</div>
+                                    <div *ngIf="mVietlott.lottery[1].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </div>
+                            </ion-col>
+                            <ion-col class="num-container a3-container a3-justify-center a3-items-center">
+                                <div class="num a3-container a3-justify-center a3-items-center" style="background: #E9B900">
+                                    <div *ngIf="mVietlott.lottery[2].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100">{{mVietlott.lottery[2].xoso}}</div>
+                                    <div *ngIf="mVietlott.lottery[2].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </div>
+                            </ion-col>
+                            <ion-col class="num-container a3-container a3-justify-center a3-items-center">
+                                <div class="num a3-container a3-justify-center a3-items-center" style="background: #5BC618">
+                                    <div *ngIf="mVietlott.lottery[3].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100">{{mVietlott.lottery[3].xoso}}</div>
+                                    <div *ngIf="mVietlott.lottery[3].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </div>
+                            </ion-col>
+                            <ion-col class="num-container a3-container a3-justify-center a3-items-center">
+                                <div class="num a3-container a3-justify-center a3-items-center" style="background: #D740C1">
+                                    <div *ngIf="mVietlott.lottery[4].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100">{{mVietlott.lottery[4].xoso}}</div>
+                                    <div *ngIf="mVietlott.lottery[4].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </div>
+                            </ion-col>
+                            <ion-col class="num-container a3-container a3-justify-center a3-items-center">
+                                <div class="num a3-container a3-justify-center a3-items-center" style="background: #E46C0B">
+                                    <div *ngIf="mVietlott.lottery[5].state==STATE_NONE" class="a3-container a3-items-center a3-justify-center a1-height-100">{{mVietlott.lottery[5].xoso}}</div>
+                                    <div *ngIf="mVietlott.lottery[5].state==STATE_LOADING" class="a3-container a3-items-center a3-justify-center a1-height-100">
+                                        <ion-spinner name="ios-small"></ion-spinner>
+                                    </div>
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row text-center class="a-row-item n-bold-text">
+                            <ion-col class="a-border-right">Giải thưởng</ion-col>
+                            <ion-col class="a-border-right">Khớp</ion-col>
+                            <ion-col class="a-border-right">Số giải</ion-col>
+                            <ion-col>Giá trị</ion-col>
+                        </ion-row>
+                        <ion-row text-center class="a-row-item n-red-text">
+                            <ion-col text-center class="a-border-right">Jackpot</ion-col>
+                            <ion-col class="a-border-right">6 số</ion-col>
+                            <ion-col class="a-border-right">{{mVietlott.numberOfJackpot}}</ion-col>
+                            <ion-col>{{mVietlott.amountStr}}</ion-col>
+                        </ion-row>
+                        <ion-row text-center class="a-row-item">
+                            <ion-col text-center class="a-border-right">Giải Nhất</ion-col>
+                            <ion-col class="a-border-right">5 số</ion-col>
+                            <ion-col class="a-border-right">{{mVietlott.numberOfPrize1}}</ion-col>
+                            <ion-col>10.000.000</ion-col>
+                        </ion-row>
+                        <ion-row text-center class="a-row-item">
+                            <ion-col text-center class="a-border-right">Giải Nhì</ion-col>
+                            <ion-col class="a-border-right">4 số</ion-col>
+                            <ion-col class="a-border-right">{{mVietlott.numberOfPrize2}}</ion-col>
+                            <ion-col>300.000</ion-col>
+                        </ion-row>
+                        <ion-row text-center class="a-row-item">
+                            <ion-col text-center class="a-border-right">Giải Ba</ion-col>
+                            <ion-col class="a-border-right">3 số</ion-col>
+                            <ion-col class="a-border-right">{{mVietlott.numberOfPrize3}}</ion-col>
+                            <ion-col>30.000</ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </div>
+
+
+            </div>
+            <div style="height:60px"></div>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,35 @@
+<ion-content id="dreambook-content" no-bounce>
+    <div fixed-top>
+
+        <div class="a1-header-height a3-container a3-justify-start a3-items-center m-header">
+            <div class="a3-container " padding style="order:0;" (click)="onClickOpenMenu()">
+                <ion-icon name="ios-menu-outline" class="header-button-icon"></ion-icon>
+            </div>
+            <div class="m-header-title" style="flex : 1">Sổ mơ</div>
+            <div padding (click)="onClickSearch()">
+                <ion-icon name="ios-search-outline" class="header-button-icon"></ion-icon>
+            </div>
+        </div>
+        <ion-searchbar #mSearchBar id="a-searchbar" [(ngModel)]="mSearchInput" [showCancelButton]="mShouldShowCancel" (ionInput)="onSearchInput()" (ionCancel)="onSearchCancel()">
+        </ion-searchbar>
+    </div>
+    <div big-padding></div>
+    <ion-list [hidden]="dreams_filtered.length==0" [virtualScroll]="dreams_filtered" [approxItemHeight]="'40px'" no-lines>
+        <ion-item *virtualItem="let dream; let i = index" [class.dark-bg]="i%2==1">
+            <div class="a3-container a3-justify-between item-cotent">
+                <div class="a1-inline-block" style="display: flex; white-space: nowrap; float: left">{{dream.content}}</div>
+                <div class="a1-inline-block">{{dream.code}}</div>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <div [hidden]="!dreams.length==0" padding text-center style="margin-top:20vh">
+        <div padding text-center>
+            <ion-icon style="font-size: 4em" name="ios-thunderstorm-outline"></ion-icon>
+        </div>
+        Không có dữ liệu
+    </div>
+    <div [hidden]="!dreams_filtered.length==0 || dreams.length==0" padding text-center style="margin-top:20vh">
+        Không tìm thấy kết quả phù hợp
+    </div>
+</ion-content>

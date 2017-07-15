@@ -1,0 +1,35 @@
+<ion-content no-bounce>
+
+  <div class="a1-header-height a3-container a3-justify-between a3-items-center m-header ">
+    <div class="a3-container modal-button" padding (click)="onClickBack()">
+      Huỷ
+    </div>
+    <div class="m-header-title">Chọn bộ số</div>
+    <div class="a3-container modal-button" padding (click)="onClickSubmit()">
+      Xong
+    </div>
+  </div>
+
+
+  <div class="a1-content">
+    <!--<div class="a-header">Cặp số đã chọn</div>
+    <div class="a3-container a3-wrap a-number-select-container" padding>
+      <div *ngIf="lotos_selected.length==0" text-center>*Bạn chưa chọn bộ số nào</div>
+      <div class="a-number a3-container a3-items-center a3-justify-center" *ngFor="let loto of lotos_selected" (click)="onClickLoto(loto)"
+        [class.a-number-selected]="loto.selected">{{loto.loto}}</div>
+    </div>
+    <div class="a-header">Danh sách cặp số</div>-->
+    <div text-center style="font-weight:bold;font-size:1.2em;padding-top:20px">Chọn bộ số cần thống kê</div>
+    <div class="a3-container a3-wrap a-number-container" padding>
+      <div class="a-number a3-container a3-items-center a3-justify-center" *ngFor="let loto of lotos" (click)="onClickLoto(loto)"
+        [class.a-number-selected]="loto.selected">{{loto.loto}}</div>
+    </div>
+
+    <div class="a-btn-container" padding>
+      <div (click)="onClickSelectAll()" class="a-btn">Chọn tất cả</div>
+      <div (click)="onClickDeselectAll()" class="a-btn">Bỏ chọn tất cả</div>
+    </div>
+    <div padding></div>
+  </div>
+
+</ion-content>

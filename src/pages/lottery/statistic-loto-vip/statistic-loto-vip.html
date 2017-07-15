@@ -1,0 +1,89 @@
+<ion-content no-bounce>
+  <div class="a1-header-height a3-container a3-justify-start a3-items-center m-header">
+    <div class="a3-container " padding (click)="onClickBack()">
+      <ion-icon name="ios-arrow-back-outline" class="header-button-icon"></ion-icon>
+    </div>
+    <div class="m-header-title" style="flex:1">Thống kê Loto</div>
+  </div>
+
+  <div class="a1-content">
+    <div class="a-inputs-controller">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6 (click)="onClickPickCategory()">
+            <div style="padding-bottom:10px">Chọn tỉnh</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{inputs.category.name}}</div>
+              <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+          <ion-col col-6 (click)="onClickPickMonths()">
+            <div style="padding-bottom:10px">Thời gian thống kê</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{inputs.months}} tháng trước</div>
+              <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div class="a-lotos-container">
+      <!-- <div padding style="background-color:lightblue; margin-bottom:8px"> 10 bộ số xuất hiện nhiều nhất</div>
+      <div class="mChartContainer">
+        <canvas id="mChartCanvas"></canvas>
+      </div>-->
+
+      <div style="background-color:lightblue; margin-bottom:8px;" class="a3-container a3-justify-between a3-items-center">
+        <div style="padding-left:16px"> Thống kê số lần xuất hiện các bộ số</div>
+        <div class="a3-container" padding (click)="onClickSortOptions()">
+          <ion-icon name="ios-options-outline" style="font-weight:bold"></ion-icon>
+        </div>
+      </div>
+
+      <div class="a-loto-container">
+        <div class="a-loto-item" *ngFor="let loto of lotos" [style.background-color]="getBackgroundColor(loto)" (click)="onClickLoto(loto)">
+          {{loto.loto}}
+        </div>
+      </div>
+
+    </div>
+
+    <div style="height:20px"></div>
+    <div style="background-color:lightblue; margin-bottom:8px;" class="a3-container a3-justify-between a3-items-center">
+      <div padding> Chi tiết các lần về</div>
+      <!--<div class="a3-container" padding (click)="onClickFullScreen()">
+        <ion-icon name="ios-expand-outline" style="font-weight:bold"></ion-icon>
+      </div>-->
+    </div>
+
+
+    <div class="a-scroll-container a3-container" (scroll)="onScroll($event)">
+      <div class="a-loto-day-container">
+        <div class="a-day-header a-border-rb-gray" style="color:white">
+          <div text-center>0</div>
+          <div text-center>-</div>
+          <div text-center>0</div>
+        </div>
+        <div *ngFor="let loto of mFilterLoto" class="item-size a-border-rb-gray a3-container a3-items-center a3-justify-center">
+          {{loto.loto}}
+        </div>
+      </div>
+      <div *ngFor="let lotoDay of mLotoDays" class="a-loto-day-container">
+        <div class="a-day-header a-border-rb-gray">
+          <div text-center>{{lotoDay.times[2]}}</div>
+          <div text-center>-</div>
+          <div text-center>{{lotoDay.times[1]}}</div>
+        </div>
+        <div *ngFor="let loto of lotoDay.lotos" class="a-loto-day" [class.a-bg-gray]="loto.ranks.length==0" (click)="onClickLotoInDay(loto)">
+          <div class="a-bg-blue a1-fill-parent a3-container a3-items-center a3-justify-center" *ngIf="loto.ranks.length>0">
+            <span [class.a-loto-special]="loto.special">{{loto.ranks.length}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div padding></div>
+  </div>
+</ion-content>

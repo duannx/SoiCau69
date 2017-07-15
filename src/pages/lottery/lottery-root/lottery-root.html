@@ -1,0 +1,39 @@
+<ion-content>
+    <div class="a1-header-height a3-container a3-justify-between a3-items-center m-header a1-z-10">
+        <div class="a3-container" padding style="order:0;" (tap)="onClickOpenMenu()">
+            <ion-icon name="ios-menu-outline" class="header-button-icon"></ion-icon>
+        </div>
+        <div class="m-header-title">Trang chủ</div>
+        <div padding>
+            <ion-icon name="ios-notifications-outline" class="header-button-icon"></ion-icon>
+        </div>
+    </div>
+    <div class="a1-content">
+        <div class="banner">
+            <img src="assets/lottery/banner.jpg" alt="banner">
+        </div>
+        <div class="content-block vip-numbers">
+            <img src="assets/lottery/icon_lucky.png" alt="lucky image"> <span class="title"><span class="super-red">Bộ số may mắn</span> hôm nay</span> <img src="assets/lottery/icon_lucky.png" alt="lucky image">
+            <div class="number-block">
+                <span *ngFor="let loto of lotosVip" class="code win">{{loto.code}}</span>
+            </div>
+        </div>
+        <div class="  results">
+            <div class="title">
+                Kết quả {{lotosVipHistory.length}} ngày gần nhất
+            </div>
+            <div class="result-body" padding>
+                <div class="day" *ngFor="let day of lotosVipHistory" padding>
+                    <span class="day-title">
+                    Cặp số may mắn ngày 
+                    <span class="date" (click)="gotoLotteryHome(day.time)">{{getViewDate(day.time)}}</span>
+                    </span>
+                    <div class="code-block">
+                        <span *ngFor="let loto of day.lotos" [class.win]="loto.state == 1" class="code">{{loto.code}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div padding></div>
+    </div>
+</ion-content>

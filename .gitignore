@@ -26,9 +26,19 @@ platforms/
 plugins/
 plugins/android.json
 plugins/ios.json
+resources/
+res/
+documents/
 www/
+config.xml
+ionic.config.json
+tsconfig.json
+package.json
+tslint.json
 $RECYCLE.BIN/
 
 .DS_Store
+.editorconfig
+.gitignore
 Thumbs.db
 UserInterfaceState.xcuserstate

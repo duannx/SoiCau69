@@ -1,0 +1,43 @@
+<ion-content>
+  <div class="a1-header-height a3-container a3-justify-start a3-items-center m-header">
+  <div class="a3-container " padding menuToggle style="order:0;">
+    <ion-icon name="ios-menu-outline" class="header-button-icon"></ion-icon>
+  </div>
+  <div class="m-header-title">Thông tin cá nhân</div>
+</div>
+
+  <div class="a1-content">
+    <!--<div class="a-user-container">
+      <div class="a3-container a3-items-center a3-wrap ">
+        <div text-center class="a1-width-100"><img src={{mLotteryDBCenter.mUser.avatar}} class="a-useravatar" (click)="onClickEditAvatar()"></div>
+        <div padding text-center class="a1-width-100 a-username" (click)="onClickEditName()">{{mLotteryDBCenter.mUser.name}}</div>
+      </div>
+    </div>-->
+
+    <ion-card>
+      <div class="a-list-control" padding>
+        <div class="a-list-item a3-container a3-justify-between" (click)="onClickEditName()">
+          <div> Tên hiển thị</div>
+          <div>{{mLotteryDBCenter.mUser.name}}</div>
+        </div>
+        <div class="a-list-item a3-container a3-justify-between" (click)="onClickEditPhone()">
+          <div> Số điện thoại</div>
+          <div>{{getUserPhone()}}</div>
+        </div>
+        <div class="a-list-item a3-container a3-justify-between" (click)="onClickEditAddress()">
+          <div> Địa chỉ</div>
+          <div>{{getUserAddress()}}</div>
+        </div>
+        <div class="a-list-item a3-container a3-justify-between" (click)="onClickUserMoney()">
+          <div> Tổng tiền</div>
+          <div>{{mLotteryDBCenter.mUser.money}} xu</div>
+        </div>
+        <div class="a-list-item a3-container a3-justify-between" (click)="onClickEditGender()">
+          <div> Giới tính</div>
+          <div>{{getUserSex()}}</div>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+
+</ion-content>

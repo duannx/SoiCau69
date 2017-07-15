@@ -1,0 +1,206 @@
+page-lottery-play {
+    width: 100%;
+    height: 100vh;
+    display: block;
+    .scroll-content {
+        width: 100%;
+        height: 100%;
+    }
+    .a-number-vip {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        background-color: chocolate;
+        color: white;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 10px 0 10px;
+    }
+    .a-number-know {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        background-color: chocolate;
+        color: white;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 5px;
+    }
+    .a-grid-inputs {
+        background-color: #FFF;
+        margin: 0 10px;
+        padding: 10px 0 20px;
+    }
+    .a-divider {
+        border-left: solid 4px map-get($colors, danger);
+        margin: 10px 10px 0px 10px;
+        padding: 10px;
+    }
+    .a-input {
+        border: solid 1px gray;
+        height: $inputHeight + px;
+        line-height: $inputHeight + px;
+        padding: 0 0 0 10px;
+    }
+    .a-text-button {
+        padding: 10px;
+        border-radius: 4px;
+        background-color: map-get($colors, danger);
+        color: white;
+        font-weight: bold;
+        display: inline-block;
+    }
+    .a-col-header {
+        color: white;
+        font-weight: bold;
+    }
+    .a-row-header {
+        background-color: map-get($colors, danger);
+        padding: 5px 0;
+        color: #FFF;
+    }
+    .a-row-content {
+        padding: 4px;
+    }
+    .a-row-content-i {
+        background-color: lightblue;
+    }
+    .a-row-content-last {
+        border-bottom: solid 1px gray;
+    }
+    .a-select {
+        max-width: 60%;
+    }
+    .a-table-header {
+        padding: 20px;
+        padding-bottom: 10px;
+        text-align: center;
+        line-height: 1.6em;
+    }
+    .green-header {
+        background-color: #047325;
+    }
+    .content-grid {
+        .row {
+            width: 100%;
+            padding: 0 !important;
+        }
+        .col {
+            padding: 8px 0 !important;
+        }
+        .bordered {
+            border: solid 1px #FFF;
+        }
+        .no-padding {
+            padding: 0 !important;
+        }
+        .red {
+            color: #F00;
+            font-weight: bold !important;
+        }
+        .a-col-header {
+            font-weight: normal !important;
+        }
+    }
+    .a-row-content-x {
+        background-color: #ddd;
+    }
+    .icon-block {
+        width: $inputHeight + px;
+        height: $inputHeight - 1 + px;
+        background-color: map-get($colors, primary);
+        color: #FFF;
+        text-align: center;
+    }
+    .center-button {
+        margin: 20px 20px;
+        button {
+            height: $inputHeight + px !important;
+        }
+    }
+    [padding] {
+        padding: 10px !important;
+    }
+    .a3-container {
+        flex-wrap: wrap;
+    }
+    .square {
+        width: 40px;
+        height: 40px;
+        border: solid 1px;
+        color: #FFF;
+        background-color: #123;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 0 5px;
+        span {
+            display: block;
+            text-align: center;
+        }
+    }
+    .square-2 {
+        span {
+            width: 100%;
+            height: 50%
+        }
+    }
+    .square-3 {
+        span {
+            width: 50%;
+            height: 50%
+        }
+    }
+    .square-4 {
+        span {
+            width: 50%;
+            height: 50%
+        }
+    }
+    $lotoItemHeight: 30;
+    .loto-item {
+        width: 100%;
+        border-radius: 20px 0 0 20px;
+        border: solid 1px #ddd;
+        padding: 0;
+        line-height: $lotoItemHeight + px;
+        text-align: right;
+        background-color: #eef2f5;
+    }
+    .code {
+        width: $lotoItemHeight + px;
+        height: $lotoItemHeight + px;
+        border-radius: 50%;
+        background-color: map-get($colors, primary);
+        display: block;
+        text-align: center;
+        line-height: $lotoItemHeight + px;
+        float: left;
+        color: #FFF;
+        margin-right: 2px;
+    }
+    .point {
+        color: map-get($colors, secondary);
+        margin-right: 5px;
+    }
+    .delete-button {
+        background-color: map-get($colors, danger);
+        color: #FFF;
+        height: 100%;
+        width: $lotoItemHeight + px;
+        display: block;
+        float: right;
+        text-align: center;
+        font-size: 16px;
+    }
+    .col {
+        margin-bottom: 5px;
+    }
+    [small-padding] {
+        padding: 0 3px !important;
+    }
+}

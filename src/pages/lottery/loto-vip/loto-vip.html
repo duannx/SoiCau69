@@ -1,0 +1,42 @@
+<ion-content no-bounce>
+  <div class="a1-header-height a3-container a3-justify-start a3-items-center m-header">
+    <div class="a3-container " padding menuToggle style="order:0;">
+      <ion-icon name="ios-menu-outline" class="header-button-icon"></ion-icon>
+    </div>
+    <div class="m-header-title" (click)="onClickTest()">Số vip hôm nay</div>
+  </div>
+  <div class="a1-content">
+    <div class="a-box-header">
+      <div padding class="a-numbers-header">Bộ số vips</div>
+      <div class="a3-container a3-justify-center">
+        <div class="a-number-vip" *ngFor="let vipNumber of vips" (click)="onClickVipNumber(vipNumber)">{{vipNumber.loto}}</div>
+      </div>
+    </div>
+
+
+    <div class="a-last-five-day">
+      <div padding text-center>Kết quả về số vips trong 5 ngày gần nhất <br>(Đỏ : có về, xám : không về)</div>
+      <ion-grid>
+        <ion-row class="a-table-headers">
+          <ion-col col-4 text-center>Ngày</ion-col>
+          <ion-col col-8 text-center>Số vips</ion-col>
+        </ion-row>
+
+
+         <ion-row class="a-loto-numbers" *ngFor="let lotoResult of lotoResults" (click)="onClickLotoResult(lotoResult)">
+          <ion-col col-4 class="a-loto-day">
+           {{lotoResult.mDateStr}}
+          </ion-col>
+          <ion-col col-8>
+            <div class="a3-container a3-items-center a3-justify-center a1-height-100">
+              <div class="a-loto" *ngFor="let loto of lotoResult.numbers" [class.loto-in]="loto.state==STATE_UNLOCK_SUCCESS" [class.loto-out]="loto.state==STATE_UNLOCK_FAIL">{{loto.loto}}</div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div padding text-center>Chú ý : Kết quả chỉ mang tính tham khảo</div>
+    <div padding></div>
+  </div>
+</ion-content>

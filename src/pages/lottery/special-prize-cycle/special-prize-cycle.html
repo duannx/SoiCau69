@@ -1,0 +1,151 @@
+<ion-content no-bounce style="width: 100%; height: 100%">
+    <div class="a1-header-height a3-container a3-justify-start a3-items-center m-header ">
+        <div class="a3-container " padding (click)="onClickBack()">
+            <ion-icon name="ios-arrow-back-outline" class="header-button-icon"></ion-icon>
+        </div>
+        <div class="m-header-title" style="flex : 1">Chu kì giải đặc biệt</div>
+    </div>
+    <div id="main-content" class="a1-content">
+        <div class="a-inputs-controller">
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-6 (click)="onClickPickCategory()">
+                        <div style="padding-bottom:10px">Chọn tỉnh</div>
+                        <div class="a-input a3-container a3-justify-between">
+                            <div>{{category.name}}</div>
+                            <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+                        </div>
+                    </ion-col>
+                    <ion-col col-6 (click)="onClickStartDate()">
+                        <div style="padding-bottom:10px">Xem đến ngày</div>
+                        <div class="a-input a3-container a3-justify-between">
+                            <div>{{getViewDate(endDate.toDateString())}}</div>
+                            <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+
+        <div padding text-center style="font-weight:bold;font-size : 1.1em">
+            Thống kê chu kì giải đặc biệt xổ số {{category.name}}
+        </div>
+        <div class="segment-container" id="segment-header">
+            <ion-segment [(ngModel)]="typeFilter" (ngModelChange)="setTouchMoveEvent()">
+                <ion-segment-button value="1">
+                    Đầu
+                </ion-segment-button>
+                <ion-segment-button value="2">
+                    Đuôi
+                </ion-segment-button>
+                <ion-segment-button value="3">
+                    Tổng
+                </ion-segment-button>
+            </ion-segment>
+        </div>
+        <div [ngSwitch]="typeFilter">
+            <div *ngSwitchCase="1">
+                <ion-grid text-center>
+                    <ion-row class="a-row-header table-header">
+                        <ion-col col-2>
+                            Đầu
+                        </ion-col>
+                        <ion-col col-4>
+                            Ngày ra cuối
+                        </ion-col>
+                        <ion-col col-3>
+                            Số ngày chưa ra
+                        </ion-col>
+                        <ion-col col-3>
+                            Max gan
+                        </ion-col>
+                    </ion-row>
+                    <ion-row no-padding *ngFor="let data of datas ; let j = index" class="a-row-content" [class.a-row-content-last]="j==(datas.length-1)" [class.a-row-content-i]="j%2==1" [class.a-row-content-x]="j%2==0">
+                        <ion-col col-2>
+                            {{j}}
+                        </ion-col>
+                        <ion-col col-4>
+                            {{getViewDate(data.dau_date)}}
+                        </ion-col>
+                        <ion-col col-3>
+                            {{data.dau_gan}}
+                        </ion-col>
+                        <ion-col col-3>
+                            {{data.dau_gan_max}}
+                        </ion-col>
+
+                    </ion-row>
+                </ion-grid>
+            </div>
+            <div *ngSwitchCase="2">
+                <ion-grid text-center>
+                    <ion-row class="a-row-header table-header">
+                        <ion-col col-2>
+                            Đuôi
+                        </ion-col>
+                        <ion-col col-4>
+                            Ngày ra cuối
+                        </ion-col>
+                        <ion-col col-3>
+                            Số ngày chưa ra
+                        </ion-col>
+                        <ion-col col-3>
+                            Max gan
+                        </ion-col>
+                    </ion-row>
+                    <ion-row no-padding *ngFor="let data of datas ; let j = index" class="a-row-content" [class.a-row-content-last]="j==(datas.length-1)" [class.a-row-content-i]="j%2==1" [class.a-row-content-x]="j%2==0">
+                        <ion-col col-2>
+                            {{j}}
+                        </ion-col>
+                        <ion-col col-4>
+                            {{getViewDate(data.duoi_date)}}
+                        </ion-col>
+                        <ion-col col-3>
+                            {{data.duoi_gan}}
+                        </ion-col>
+                        <ion-col col-3>
+                            {{data.duoi_gan_max}}
+                        </ion-col>
+
+                    </ion-row>
+                </ion-grid>
+            </div>
+            <div *ngSwitchCase="3">
+                <ion-grid text-center>
+                    <ion-row class="a-row-header table-header">
+                        <ion-col col-2>
+                            Tổng
+                        </ion-col>
+                        <ion-col col-4>
+                            Ngày ra cuối
+                        </ion-col>
+                        <ion-col col-3>
+                            Số ngày chưa ra
+                        </ion-col>
+                        <ion-col col-3>
+                            Max gan
+                        </ion-col>
+                    </ion-row>
+                    <ion-row no-padding *ngFor="let data of datas ; let j = index" class="a-row-content" [class.a-row-content-last]="j==(datas.length-1)" [class.a-row-content-i]="j%2==1" [class.a-row-content-x]="j%2==0">
+                        <ion-col col-2>
+                            {{j}}
+                        </ion-col>
+                        <ion-col col-4>
+                            {{getViewDate(data.tong_date)}}
+                        </ion-col>
+                        <ion-col col-3>
+                            {{data.tong_gan}}
+                        </ion-col>
+                        <ion-col col-3>
+                            {{data.tong_gan_max}}
+                        </ion-col>
+
+                    </ion-row>
+                </ion-grid>
+            </div>
+
+        </div>
+
+        <div padding></div>
+    </div>
+</ion-content>

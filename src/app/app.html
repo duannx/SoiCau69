@@ -1,1 +1,15 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu id="lottery" side="left" type="overlay" [content]="appcontent">
+    <ion-content>
+        <ion-list class="lottery-menu-list" no-lines>
+            <div *ngFor="let category of mLotteryMenu.categories">
+                <ion-list-header class="lottery-menu-header">
+                    {{category.name}}
+                </ion-list-header>
+                <ion-item [class.activated]="item.isActive" class="lottery-menu-item" *ngFor="let item of category.items" (tap)="onClickLotteryMenuItem(category,item)">
+                    <i class="fa {{item.icon}}" aria-hidden="true"></i> <span style="white-space: nowrap">{{item.name}}</span>
+                </ion-item>
+            </div>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+<ion-nav [root]="rootPage" #appcontent></ion-nav>

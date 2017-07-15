@@ -1,0 +1,94 @@
+<ion-content no-bounce>
+  <div class="a1-header-height a3-container a3-justify-start a3-items-center m-header">
+    <div class="a3-container " padding (click)="onClickBack()">
+      <ion-icon name="ios-arrow-back-outline" class="header-button-icon"></ion-icon>
+    </div>
+    <div class="m-header-title" style="flex:1">Thống kê theo tần suất</div>
+    <div class="a3-container " padding (click)="onClickFilter()">
+      <ion-icon name="ios-calendar-outline" class="header-button-icon" [class.header-button-icon-inactive]="inputs.filter==FILTER_QUICK"></ion-icon>
+    </div>
+  </div>
+
+  <div class="a1-content">
+    <div class="a-inputs-controller">
+      <ion-grid>
+
+        <ion-row *ngIf="inputs.filter==FILTER_QUICK">
+          <ion-col col-6 (click)="onClickPickCategory()">
+            <div style="padding-bottom:10px">Chọn tỉnh</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{inputs.category.name}}</div>
+              <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+          <ion-col col-6 (click)="onClickCount()">
+            <div style="padding-bottom:10px">Số lần quay thưởng</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{inputs.count}}</div>
+              <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="inputs.filter==FILTER_TIME">
+          <ion-col (click)="onClickPickCategory()">
+            <div style="padding-bottom:10px">Chọn tỉnh</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{inputs.category.name}}</div>
+              <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+
+        </ion-row>
+        <ion-row *ngIf="inputs.filter==FILTER_TIME">
+          <ion-col col-6 (click)="onClickStartDate()">
+            <div style="padding-bottom:10px">Ngày bắt đầu</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{inputs.start}}</div>
+              <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+          <ion-col col-6 (click)="onClickEndDate()">
+            <div style="padding-bottom:10px">Ngày kết thúc</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{inputs.end}}</div>
+              <ion-icon name="ios-calendar-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+
+
+      </ion-grid>
+    </div>
+
+    <div class="a-lotos-container">
+      <div padding style="background-color:lightblue; margin-bottom:8px"> 10 bộ số xuất hiện nhiều nhất</div>
+
+      <div class="mChartContainer">
+        <canvas id="mChartCanvas"></canvas>
+      </div>
+
+      <div padding style="background-color:lightblue; margin-bottom:8px"> Thống kê số lần xuất hiện các bộ số</div>
+      <ion-grid style="padding:0px">
+        <ion-row *ngFor="let lotocategory of categories" class="a-loto-category">
+          <ion-col col-2 class="a-loto-header a3-container a3-items-center a3-justify-center">
+            Đầu {{lotocategory.category}}</ion-col>
+          <ion-col col-1 *ngFor="let loto of lotocategory.lotos" class="a-loto-number">
+            <div>
+              <div class="a-loto-number-loto" text-center>{{loto.loto}}</div>
+              <div class="a-loto-number-count" text-center>{{loto.count}}</div>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="a3-container a3-justify-center a3-items-center" style="margin-top:10px">
+          <div class="number-loto"></div>
+          <div style="padding : 0 20px 0 10px">Loto</div>
+          <div class="number-count"></div>
+          <div style="padding : 0 20px 0 10px"> Số lần xuất hiện</div>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div padding></div>
+  </div>
+</ion-content>

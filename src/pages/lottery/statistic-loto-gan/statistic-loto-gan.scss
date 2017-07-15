@@ -1,0 +1,75 @@
+page-statistic-loto-gan {
+    .a-inputs-controller {
+        border: solid 2px map-get($colors, danger);
+        margin: 10px;
+    }
+    .a-input {
+        padding: 10px;
+        border-radius: 4px;
+        border: solid 1px gray;
+        width: 100%;
+    }
+    .a-input-number .text-input {
+        margin: 0 !important;
+    } // Thong ke lo gan
+    .a-table-header {
+        padding: 20px;
+        padding-bottom: 10px;
+        text-align: center;
+        line-height: 1.6em;
+    }
+    .a-col-header {
+        color: white;
+        font-weight: bold;
+    }
+    .a-row-header {
+        background-color: map-get($colors, danger);
+    }
+    .a-row-content {
+        border-left: solid 1px gray;
+        border-right: solid 1px gray;
+        padding: 4px;
+    }
+    .a-row-content-i {
+        background-color: lightblue;
+    }
+    .a-row-content-last {
+        border-bottom: solid 1px gray;
+    }
+    // Thong ke lo maxgan
+    .a-lotos-container {
+        margin: 8px;
+    }
+    .a-loto-no-numbers {
+        background-color: lightgray;
+    }
+    .a-loto-category {
+        border: solid 1px lightgray;
+        margin-bottom: 8px;
+    }
+    .a-loto-header {
+        // margin: 1px;
+        background: lightblue;
+    }
+    .a-loto-number {
+        //  margin: 1px;
+        padding: 4px 0 4px 0;
+    }
+    .a-loto-number-loto {
+        font-weight: bold;
+        color: map-get($colors, danger);
+    }
+    .a-loto-number-count {
+        color: blueviolet;
+    }
+    .number-loto {
+        width: 24px;
+        height: 12px;
+        background-color: map-get($colors, danger);
+    }
+    .number-count {
+        width: 24px;
+        height: 12px;
+        background-color: blueviolet;
+    }
+}

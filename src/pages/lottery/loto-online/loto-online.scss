@@ -1,0 +1,61 @@
+page-loto-online {
+    ion-content {
+        background-color: rgb(238, 242, 245) !important;
+    }
+    .a-col-header {
+        color: white;
+        font-weight: bold;
+    }
+    .a-row-header {
+        background-color: map-get($colors, danger);
+        padding: 5px 0;
+        color: #FFF;
+    }
+    .a-table-header {
+        padding: 20px;
+        padding-bottom: 10px;
+        text-align: center;
+        line-height: 1.6em;
+    }
+    .green-header {
+        background-color: #047325;
+    }
+    .segment {
+        margin-bottom: 20px;
+    }
+    .segment-button {
+        border: none !important;
+        color: #858585 !important;
+        font-weight: bold;
+        border-radius: 0 !important;
+        height: $segment-height !important;
+        line-height: $segment-height !important;
+        background-color: #343434 !important;
+        overflow: visible !important;
+        opacity: 1 !important;
+        display: flex;
+        justify-content: center;
+        i {
+            margin: auto 5px;
+            font-size: 1.3em;
+        }
+    }
+    .segment-button.segment-activated {
+        color: #FFF !important;
+    }
+    .segment-button.segment-activated::after {
+        content: ' ';
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid #343434;
+        position: absolute;
+        bottom: -8px;
+        left: calc(50% - 8px);
+        z-index: 100;
+    }
+    .a1-content {
+        overflow-x: hidden !important;
+    }
+}

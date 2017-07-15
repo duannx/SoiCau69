@@ -1,0 +1,67 @@
+<ion-content>
+    <div class="custom-segment">
+        <div class="custom-segment-button" [class.active]="statisticMode == 1" (click)="statisticMode = 1">
+            <ion-icon name="checkmark-circle"></ion-icon>
+            <span>
+              Kết quả gần đây
+            </span>
+        </div>
+        <div class="custom-segment-button" [class.active]="statisticMode == 2" (click)="statisticMode = 2">
+            <ion-icon name="star"></ion-icon>
+            <span>
+              Top số dự đoán
+            </span>
+        </div>
+    </div>
+    <div class="result" *ngIf="statisticMode==1">
+        <div class="day-block" *ngFor="let day of showingDatas; let i = index" [hidden]="day.lotosPlayed.length == 0" padding>
+            <div class="day" padding>
+                Ngày {{day.time}}
+            </div>
+            <ion-grid>
+                <ion-row *ngFor="let loto of day.lotosPlayed; let j=index">
+                    <ion-col col-5 no-padding>
+                        <span [hidden]="loto.numberOfCode > 1" [class.win]="loto.moneyWin > 0" class="code">{{loto.code}}</span>
+                        <span [hidden]="loto.numberOfCode == 1" [class.win]="loto.moneyWin > 0" *ngFor="let code of loto.code.split(',')" [class.code-small]="loto.numberOfCode == 4 " class="code ">{{code}}</span>
+                    </ion-col>
+                    <ion-col col-1>x</ion-col>
+                    <ion-col col-3 class="col-point"><span class="point">{{getPoint(loto.moneyBet, loto.type)}}</span><span class="unit">đ</span></ion-col>
+                    <ion-col [hidden]="loto.moneyWin == 0" col-3>ăn <span class="red">{{loto.moneyWin}}</span> xu</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col class="total-col">
+                        <!--<span class="sum-label">Tổng kết: </span> ăn <span class="code">42</span> <span class="code">21</span> lãi <span class="red">100</span> điểm-->
+                        <span class="sum-label">Tổng kết: </span>
+                        <span class="result" [innerHTML]="getTotal(day)"></span>
+
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </div>
+    <div class="statistic" *ngIf="statisticMode==2">
+        <div class="vip-numbers">
+            <div padding></div>
+            <div padding text-center bold>
+                Số <span class="red">VIP</span> hôm nay
+            </div>
+            <div class="vip-codes">
+                <span *ngFor="let loto of lotosVip" class="code vip-code">{{loto.code}}</span>
+            </div>
+            <!--<div padding text-center>
+                Tư vấn số - Không trúng hoàn lại xu
+                <button ion-button full round primary (click)="getLotoVip()">Nhận số</button>
+            </div>-->
+
+        </div>
+        <div class="top-numbers">
+            <div padding></div>
+            <div padding text-center bold>Top bộ số người dùng dự đoán</div>
+            <div class="vip-codes">
+                <span *ngFor="let loto of lotosTopPlayed" class="code vip-code">{{loto.code}}</span>
+            </div>
+        </div>
+        <div class="user-statistic"></div>
+    </div>
+    <div padding></div>
+</ion-content>

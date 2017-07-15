@@ -1,0 +1,143 @@
+page-play-loto-online {
+    .modal-button {
+        color: white;
+        font-size: 1.2em;
+    }
+    .a-header {
+        margin-top: 10px;
+        padding: 8px;
+        font-weight: bold;
+        font-size: 1.2em;
+        border-left: 4px solid chocolate;
+    }
+    .a-number {
+        background-color: #eef2f5;
+        width: 7vw;
+        height: 7vw;
+        margin: 1vw;
+        border-radius: 4vw;
+    }
+    .a-number-selected {
+        background-color: map-get($colors, danger);
+        color: white;
+        font-weight: bold;
+    }
+    .a-number-select-container {
+        max-height: 25vh;
+        overflow-y: auto;
+    }
+    .a-btn-container {
+        text-align: center;
+    }
+    .a-btn {
+        display: inline-block;
+        width: 48%;
+        text-align: center;
+        background-color: chocolate;
+        color: white;
+        font-size: 1.2em;
+        padding: 10px;
+    }
+    #btn-play {
+        width: 70%;
+        background-color: map-get($colors, danger);
+    }
+    #btn-cancel {
+        width: 26%;
+    }
+    .form-group {
+        width: 100%;
+        padding: 0 15px;
+        label {
+            width: 100%;
+            display: block;
+            margin: 10px 0 5px 0;
+        }
+        input {
+            padding: 5px 10px;
+            border: solid 1px #666;
+        }
+    }
+    ion-col {
+        display: flex;
+        span {
+            margin: auto;
+        }
+    }
+    .divider {
+        width: 100%;
+        height: 1px;
+        background-color: #eef2f5;
+    }
+    .divPoint {
+        width: 100%;
+        padding: 10px;
+        border: solid 1px gray;
+        color: gray;
+    }
+    .point {
+        color: map-get($colors, secondary);
+    }
+    .unit {
+        float: right;
+    }
+    .money {
+        color: map-get($colors, danger);
+        font-weight: bold;
+    }
+    .total-money {
+        font-size: 1.1em;
+        font-weight: bold;
+        color: map-get($colors, danger);
+    }
+    $lotoItemHeight: 25;
+    .code {
+        width: $lotoItemHeight + px;
+        height: $lotoItemHeight + px;
+        border-radius: 50%;
+        background-color: map-get($colors, danger);
+        display: inline-block;
+        text-align: center;
+        line-height: $lotoItemHeight + px;
+        color: #FFF;
+        margin-right: 5px;
+    }
+    .no-margin-right {
+        margin-right: 0;
+    }
+    .row-total {
+        font-size: 1.3em;
+    }
+    .pointInput {
+        height: 40px;
+        line-height: 40px;
+        padding-left: 10px;
+        width: 100%;
+        color: map-get($colors, secondary);
+        border-color: #ddd !important;
+    }
+    .div-input {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    .div-input::after {
+        content: 'Điểm' !important;
+        position: absolute;
+        right: 0;
+        width: 45%;
+        height: 100%;
+        top: 0;
+        display: block;
+        color: gray;
+        justify-content: center;
+        line-height: 40px;
+        text-align: right;
+        padding-right: 5px;
+    }
+    .col-code {
+        display: block;
+        text-align: center;
+        line-height: 40px;
+    }
+}

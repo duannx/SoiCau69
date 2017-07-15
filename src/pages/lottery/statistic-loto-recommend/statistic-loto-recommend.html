@@ -1,0 +1,118 @@
+<ion-content no-bounce id="mPageContent">
+    <div class="a1-header-height a3-container a3-justify-start a3-items-center m-header">
+        <div class="a3-container " padding (click)="onClickBack()">
+            <ion-icon name="ios-arrow-back-outline" class="header-button-icon"></ion-icon>
+        </div>
+        <div class="m-header-title" style="flex:1">Dự đoán Loto</div>
+        <!--<div class="a3-container " padding (click)="onClickHelp()">
+      <ion-icon name="ios-help-circle-outline" class="header-button-icon"></ion-icon>
+    </div>-->
+
+    </div>
+
+    <div class="a1-content a1-relative" id="a1-content">
+
+        <ion-grid class="a-grid-input">
+            <!--<ion-row>
+        <ion-col>
+          <div style="padding-bottom:10px">Dự đoán</div>
+          <div class="a-input a3-container a3-justify-between">
+            <div class="a-input-number">
+              <ion-input type="tel" [(ngModel)]="inputs.lotos" (input)="onLotosChanged($event)" class="a-input-loto" placeHolder="Những cặp số bạn kết"></ion-input>
+            </div>
+            <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon" *ngIf="inputs.lotos.length==0"></ion-icon>
+            <ion-icon name="ios-close-circle-outline" class="a-input-icon" (click)="onClickClearLotos()" *ngIf="inputs.lotos.length>0"></ion-icon>
+          </div>
+        </ion-col>
+      </ion-row>-->
+
+            <ion-row>
+                <ion-col (click)="onClickPickDate()">
+                    <div style="padding-bottom:10px">Chọn ngày</div>
+                    <div class="a-input a3-container a3-justify-between">
+                        <div>{{inputs.mDateStr}}</div>
+                        <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+                    </div>
+                </ion-col>
+
+                <!--<ion-col col-6>
+          <div style="padding-bottom:10px;color:white">|||</div>
+          <div class=" a-input-button a3-container a3-justify-center" (click)="onClickView()">
+            Xem kết quả
+          </div>
+        </ion-col>-->
+            </ion-row>
+
+        </ion-grid>
+
+        <div *ngIf="mLotosUser.length>0">
+            <div class="a-lotos-title">Đề xuất kết quả các bộ số của bạn</div>
+            <div style="padding : 8px">
+                <div *ngFor="let loto of mLotosUser" class="a-loto">
+                    <span class="a-loto-loto" [class.a-loto-special]="loto.count>0">{{loto.loto}} <span *ngIf="loto.count>1">({{loto.count}})</span></span>
+                </div>
+            </div>
+        </div>
+
+
+        <div *ngIf="mLotosSystem.length>0">
+            <div class="a-lotos-title">Top {{mLotosSystem.length}} Loto hệ thống dự đoán sẽ về</div>
+            <div style="padding : 8px">
+                <div *ngFor="let loto of mLotosSystem" class="a-loto">
+                    <span class="a-loto-loto" [class.a-loto-special]="loto.count>0">{{loto.loto}} <span *ngIf="loto.count>1">({{loto.count}})</span></span>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="mLotosSystemMin.length>0">
+            <div class="a-lotos-title">Top {{mLotosSystemMin.length}} Loto hệ thống dự đoán không về</div>
+            <div style="padding : 8px">
+                <div *ngFor="let loto of mLotosSystemMin; let i=index" class="a-loto">
+                    <span class="a-loto-loto" [class.a-loto-special]="loto.count>0">{{loto.loto}} <span *ngIf="loto.count>1">({{loto.count}})</span> </span>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="mResultLotos.length>0">
+            <div class="a-lotos-title"> Kết quả Loto ngày {{inputs.mDateStr}}</div>
+            <div style="padding : 8px">
+                <div *ngFor="let loto of mResultLotos" class="a-loto">
+                    <span class="a-loto-loto">{{loto.loto}} <span *ngIf="loto.count>1">({{loto.count}})</span> </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div *ngIf="mLotosNguoc.length>0">
+            <div class="a-lotos-title"> Danh sách các cặp số hay lộn đầu đuôi</div>
+            <div style="padding : 8px">
+                <div *ngFor="let loto of mLotosNguoc" class="a-loto">
+                    <span class="a-loto-loto">{{loto.loto}}</span>
+                </div>
+            </div>
+        </div>
+
+
+        <ion-grid class="a-grid-input">
+            <ion-row>
+                <ion-col>
+                    <div style="padding-bottom:10px">Cập nhật số lộn đầu đuôi</div>
+                    <div class="a-input a3-container a3-justify-between a3-items-center">
+                        <div class="a-input-number">
+                            <ion-textarea type="number" [(ngModel)]="inputs.lotosnguoc" (input)="onLotosNguocChanged($event)" class="a-input-loto" placeHolder="Những cặp số hay lộn đầu đuôi"></ion-textarea>
+                        </div>
+                        <ion-icon name="ios-close-circle-outline" class="a-input-icon" (tap)="onClickClearLotosNguoc()" *ngIf="inputs.lotosnguoc.length>0"></ion-icon>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row padding text-center>
+                <div class=" a-input-button a3-container a3-justify-center" (tap)="onClickUpdateLotosNguoc()">
+                    Cập nhật
+                </div>
+            </ion-row>
+        </ion-grid>
+
+
+
+        <div padding id="mPaddingDiv"></div>
+    </div>
+</ion-content>

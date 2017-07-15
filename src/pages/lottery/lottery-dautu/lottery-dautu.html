@@ -1,0 +1,17 @@
+<ion-content no-bounce>
+  <div class="a1-header-height a3-container a3-justify-start a3-items-center m-header">
+    <div class="a3-container " padding menuToggle style="order:0;">
+      <ion-icon name="ios-menu-outline" class="header-button-icon"></ion-icon>
+    </div>
+    <div class="m-header-title">Đầu tư</div>
+  </div>
+
+  <div class="a1-content">
+    <ion-list>
+      <ion-item *ngFor="let type of _types" (click)="onClickType(type)">
+        {{type.name}}
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>

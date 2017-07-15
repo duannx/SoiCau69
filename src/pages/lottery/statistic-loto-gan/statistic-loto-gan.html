@@ -1,0 +1,104 @@
+<ion-content no-bounce>
+  <div class="a1-header-height a3-container a3-justify-start a3-items-center m-header">
+    <div class="a3-container " padding (click)="onClickBack()">
+      <ion-icon name="ios-arrow-back-outline" class="header-button-icon"></ion-icon>
+    </div>
+    <div class="m-header-title">Thống kê Logan</div>
+  </div>
+
+  <div class="a1-content">
+
+    <!--<div class="a-header">
+      <div padding text-center class="a-content-header"> Tổng hợp dự đoán của người dùng </div>
+    </div>-->
+    <div class="a-inputs-controller">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6 (click)="onClickPickStartDay()">
+            <div style="padding-bottom:10px">Ngày bắt đầu</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{inputs.start}}</div>
+              <ion-icon name="ios-calendar-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+          <ion-col col-6 (click)="onClickPickEndDay()">
+            <div style="padding-bottom:10px">Ngày kết thúc</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{inputs.end}}</div>
+              <ion-icon name="ios-calendar-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-6 (click)="onClickPickCategory()">
+            <div style="padding-bottom:10px">Chọn tỉnh</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{inputs.category.name}}</div>
+              <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+          <ion-col col-6 (click)="onClickGan()">
+            <div style="padding-bottom:10px">Chọn biên độ</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{inputs.gan}}</div>
+              <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+
+
+    <div class="a-table-header" *ngIf="logans.length==0">Không có bộ số chưa ra theo biên độ <strong>{{inputs.gan}}</strong> từ ngày <strong>{{inputs.start}}</strong> đến ngày
+      <strong>{{inputs.end}}</strong> của xổ số <strong>{{inputs.category.name}}</strong> </div>
+    <div *ngIf="logans.length>0">
+      <div class="a-table-header">Các bộ số chưa ra theo biên độ <strong>{{inputs.gan}}</strong> từ ngày <strong>{{inputs.start}}</strong> đến ngày
+        <strong>{{inputs.end}}</strong> của xổ số <strong>{{inputs.category.name}}</strong> </div>
+      <ion-grid>
+        <ion-row class="a-row-header">
+          <ion-col col-2 text-center class="a-col-header">Bộ số</ion-col>
+          <ion-col col-2 text-center class="a-col-header">Gan</ion-col>
+          <ion-col col-3 text-center class="a-col-header">MaxGan</ion-col>
+          <ion-col col-5 text-center class="a-col-header">Lần cuối</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let logan of logans; let i=index" class="a-row-content" [class.a-row-content-last]="i==(logans.length-1)"
+          [class.a-row-content-i]="i%2==1">
+          <ion-col col-2 text-center>{{logan.loto}}</ion-col>
+          <ion-col col-2 text-center>{{logan.gan}}</ion-col>
+          <ion-col col-3 text-center>{{logan.maxgan}}</ion-col>
+          <ion-col col-5 text-center>{{logan.time}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+
+    <div class="a-lotos-container">
+      <div padding style="background-color:lightblue; margin-bottom:8px">Thống kê Gan cực đại</div>
+      <ion-grid style="padding:0px">
+        <ion-row *ngFor="let logans of categories" class="a-loto-category">
+          <ion-col col-2 class="a-loto-header a3-container a3-items-center a3-justify-center" (click)="onClickCategory(category)">
+            Đầu {{logans.category}}</ion-col>
+          <ion-col col-1 *ngFor="let logan of logans.lotos" class="a-loto-number">
+            <div>
+              <div class="a-loto-number-loto" text-center>{{logan.loto}}</div>
+              <div class="a-loto-number-count" text-center>{{logan.maxgan}}</div>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="a3-container a3-justify-center a3-items-center" style="margin-top:10px">
+
+          <div class="number-loto"></div>
+          <div style="padding : 0 20px 0 10px">Loto</div>
+
+          <div class="number-count"></div>
+
+          <div style="padding : 0 20px 0 10px"> Max Gan</div>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div padding></div>
+  </div>
+</ion-content>

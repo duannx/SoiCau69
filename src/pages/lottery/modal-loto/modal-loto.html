@@ -1,0 +1,13 @@
+<ion-content no-bounce id="iPageContent">
+  <div class="a1-container">
+    <div class="bg-transparent a1-container-absolute" (click)="onClickBack()"></div>
+    <div class="a1-container-bottom">
+      <div class="a-content" id="iContent">
+        <div class="a3-container a3-wrap a-number-container" padding>
+          <div class="a-number a3-container a3-items-center a3-justify-center" *ngFor="let loto of lotos" (click)="onClickLoto(loto)"
+            [class.a-number-selected]="loto.selected">{{loto.loto}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

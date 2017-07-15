@@ -1,0 +1,211 @@
+page-xsmb {
+    .a-content-header {
+        margin: 8px;
+        border: solid 1px gray;
+        color: map-get($colors, danger);
+    }
+    .a-icon {
+        color: blue;
+        font-size: 1.4em;
+        font-weight: bold;
+        padding: 8px;
+    }
+    .lottery-container {
+        // border-top: 1px solid map-get($colors, 'border-table');
+        border-left: 1px solid map-get($colors, 'border-table');
+        margin-bottom: 10px;
+    }
+    .lottery-item {
+        border-bottom: 1px solid map-get($colors, 'border-table');
+        border-right: 1px solid map-get($colors, 'border-table');
+        padding: 8px;
+    }
+    .border-container {
+        border-left: 1px solid map-get($colors, 'border-table');
+    }
+    .border-item {
+        border-bottom: 1px solid map-get($colors, 'border-table');
+        border-right: 1px solid map-get($colors, 'border-table');
+    }
+    .two-lines-item {
+        height: 50%;
+    }
+    .green-title {
+        background-color: #71A71D;
+        border: none;
+        color: white;
+    }
+    .rank {
+        color: #777777;
+        padding: 10px;
+    }
+    .flex-1 {
+        flex: 1;
+    }
+    .flex-2 {
+        flex: 2;
+    } // sms ad
+    .sms-container {
+        height: 120px;
+    }
+    .sms-item {
+        width: 100%;
+        height: 100%;
+        border-radius: 24%;
+        border: 1px solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    } // thong ke loto trong ngay //
+    .small-table {
+        height: 64px;
+        margin-top: 10px
+    } // thong ke
+    .blue-title {
+        background-color: #2B4B84;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 32px;
+    }
+    .title-inside {
+        height: 32px;
+        background-color: #f2f2f2;
+        border-left: 3px solid #71A71D;
+        border-right: 1px solid #c3bfbf;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+    }
+    .content-inside {
+        border-left: 1px solid #c3bfbf;
+        border-right: 1px solid #c3bfbf;
+        padding: 6px;
+    }
+    .loto-item {
+        border: 1px solid #277dad;
+    }
+    .left-loto-item {
+        background-color: #DFE8ED;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .right-loto-item {
+        background-color: #F8F8F0;
+        border-left: 1px solid #277dad;
+        display: flex;
+        align-items: center;
+    }
+    .a-main-segment-content {
+        padding: 8px;
+    }
+    .a-container-center {}
+    // redo
+    .a-row-item {
+        border-bottom: solid 1px lightgray;
+        border-left: solid 1px lightgray;
+        border-right: solid 1px lightgray;
+        min-height: 2em;
+        line-height: 2em;
+    }
+    .a-border-left {
+        border-left: solid 1px lightgray;
+    }
+    .a-border-right {
+        border-right: solid 1px lightgray;
+    }
+    .a-border-bottom {
+        border-bottom: solid 1px lightgray;
+    }
+    .n-col-item {
+        min-height: 2em;
+    }
+    .n-green-title {
+        background-color: #71A71D;
+        color: white;
+    }
+    .n-red-title {
+        background-color: map-get($colors, danger);
+        color: white;
+    }
+    .n-blue-title {
+        background-color: #2B4B84;
+        color: white;
+    }
+    .n-grey-title {
+        background-color: #f2f2f2;
+        border-left: 3px solid #71A71D;
+        padding: 8px 4px 8px 12px;
+    }
+    .n-red-text {
+        color: map-get($colors, danger);
+    }
+    .n-grey-text {
+        color: grey;
+    }
+    .n-blue-border {
+        border: 1px solid #277dad;
+    }
+    .n-left-loto-item {
+        background-color: #DFE8ED;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .n-right-loto-item {
+        background-color: #F8F8F0;
+        border-left: 1px solid #277dad;
+        display: flex;
+        align-items: center;
+    }
+    .n-date-green-item {
+        background-color: #71A71D;
+        color: white;
+        margin: 4px;
+    }
+    .n-padding {
+        padding: 6px;
+    }
+    .n-padding-0 {
+        padding: 0;
+    }
+    .n-padding-lr {
+        padding: 0 6px !important;
+    }
+    .n-margin-top {
+        margin-top: 8px;
+    }
+    .n-medium-text {
+        font-size: 1.1em
+    }
+    .n-bold-text {
+        font-weight: bold;
+    }
+    #total-prize {
+        background-color: #ec3232;
+        padding: 6px;
+        border-radius: 8px;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: white;
+    }
+    .vietlott-info-text {
+        color: #2e126f;
+    }
+    .num-container {
+        padding: 8px !important;
+    }
+    .num {
+        width: 10vw;
+        height: 10vw;
+        max-width: 4em;
+        max-height: 4em;
+        border-radius: 50%;
+        font-size: 1.2em;
+        color: white;
+        font-weight: bold;
+    }
+}

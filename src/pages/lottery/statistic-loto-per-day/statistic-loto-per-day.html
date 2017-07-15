@@ -1,0 +1,183 @@
+<ion-content no-bounce style="width: 100%; height: 100%">
+    <div class="a1-header-height a3-container a3-justify-start a3-items-center m-header ">
+        <div class="a3-container " padding (click)="onClickBack()">
+            <ion-icon name="ios-arrow-back-outline" class="header-button-icon"></ion-icon>
+        </div>
+        <div class="m-header-title" style="flex : 1">Thống kê Loto đầu đuôi</div>
+    </div>
+    <div id="main-content" class="a1-content">
+        <div class="a-inputs-controller">
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-6 (click)="onClickPickCategory()">
+                        <div style="padding-bottom:10px">Chọn tỉnh</div>
+                        <div class="a-input a3-container a3-justify-between">
+                            <div>{{category.name}}</div>
+                            <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+                        </div>
+                    </ion-col>
+                    <ion-col col-6 (click)="onClickPickWeeks()">
+                        <div style="padding-bottom:10px">Thời gian</div>
+                        <div class="a-input a3-container a3-justify-between">
+                            <div>{{timePeriod}} tuần trước</div>
+                            <ion-icon name="ios-calendar-outline" class="a-input-icon"></ion-icon>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+
+        <div padding text-center style="font-weight:bold;font-size : 1.1em">
+            Thống kê đầu, đuôi, tổng loto {{category.name}} trong vòng {{timePeriod}} tuần trước
+        </div>
+        <div class="segment-container" id="segment-header">
+            <ion-segment [(ngModel)]="typeFilter" (ngModelChange)="setTouchMoveEvent()">
+                <ion-segment-button value="head">
+                    Đầu
+                </ion-segment-button>
+                <ion-segment-button value="back">
+                    Đuôi
+                </ion-segment-button>
+                <ion-segment-button value="sum">
+                    Tổng
+                </ion-segment-button>
+            </ion-segment>
+        </div>
+        <div id="table-content" [ngSwitch]="typeFilter">
+            <ion-grid text-center *ngSwitchCase="'head'">
+                <ion-row class="a-row-header table-header">
+                    <ion-col col-2>
+                        Ngày
+                    </ion-col>
+                    <ion-col col-1>
+                        0
+                    </ion-col>
+                    <ion-col col-1>
+                        1
+                    </ion-col>
+                    <ion-col col-1>
+                        2
+                    </ion-col>
+                    <ion-col col-1>
+                        3
+                    </ion-col>
+                    <ion-col col-1>
+                        4
+                    </ion-col>
+                    <ion-col col-1>
+                        5
+                    </ion-col>
+                    <ion-col col-1>
+                        6
+                    </ion-col>
+                    <ion-col col-1>
+                        7
+                    </ion-col>
+                    <ion-col col-1>
+                        8
+                    </ion-col>
+                    <ion-col col-1>
+                        9
+                    </ion-col>
+                </ion-row>
+                <ion-row no-padding *ngFor="let element of lotosFilter ; let i = index" class="a-row-content" [class.a-row-content-last]="i==(lotosFilter.length-1)" [class.a-row-content-i]="i%2==1" [class.a-row-content-x]="i%2==0">
+                    <ion-col right-bordered col-2 [innerHTML]="getViewDate(element.date)">
+                    </ion-col>
+                    <ion-col double-lingheight *ngFor="let head of element.head.count" col-1 [class.max-value]="head == element.head.max">
+                        {{head}}
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <ion-grid text-center *ngSwitchCase="'back'">
+                <ion-row class="a-row-header table-header">
+                    <ion-col col-2>
+                        Ngày
+                    </ion-col>
+                    <ion-col col-1>
+                        0
+                    </ion-col>
+                    <ion-col col-1>
+                        1
+                    </ion-col>
+                    <ion-col col-1>
+                        2
+                    </ion-col>
+                    <ion-col col-1>
+                        3
+                    </ion-col>
+                    <ion-col col-1>
+                        4
+                    </ion-col>
+                    <ion-col col-1>
+                        5
+                    </ion-col>
+                    <ion-col col-1>
+                        6
+                    </ion-col>
+                    <ion-col col-1>
+                        7
+                    </ion-col>
+                    <ion-col col-1>
+                        8
+                    </ion-col>
+                    <ion-col col-1>
+                        9
+                    </ion-col>
+                </ion-row>
+                <ion-row no-padding *ngFor="let element of lotosFilter ; let i = index" class="a-row-content" [class.a-row-content-last]="i==(lotosFilter.length-1)" [class.a-row-content-i]="i%2==1" [class.a-row-content-x]="i%2==0">
+                    <ion-col right-bordered col-2 [innerHTML]="getViewDate(element.date)">
+                    </ion-col>
+                    <ion-col double-lingheight *ngFor="let back of element.back.count" col-1 [class.max-value]="back == element.back.max">
+                        {{back}}
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <ion-grid text-center *ngSwitchCase="'sum'">
+                <ion-row class="a-row-header table-header">
+                    <ion-col col-2>
+                        Ngày
+                    </ion-col>
+                    <ion-col col-1>
+                        0
+                    </ion-col>
+                    <ion-col col-1>
+                        1
+                    </ion-col>
+                    <ion-col col-1>
+                        2
+                    </ion-col>
+                    <ion-col col-1>
+                        3
+                    </ion-col>
+                    <ion-col col-1>
+                        4
+                    </ion-col>
+                    <ion-col col-1>
+                        5
+                    </ion-col>
+                    <ion-col col-1>
+                        6
+                    </ion-col>
+                    <ion-col col-1>
+                        7
+                    </ion-col>
+                    <ion-col col-1>
+                        8
+                    </ion-col>
+                    <ion-col col-1>
+                        9
+                    </ion-col>
+                </ion-row>
+                <ion-row no-padding *ngFor="let element of lotosFilter ; let i = index" class="a-row-content" [class.a-row-content-last]="i==(lotosFilter.length-1)" [class.a-row-content-i]="i%2==1" [class.a-row-content-x]="i%2==0">
+                    <ion-col right-bordered col-2 [innerHTML]="getViewDate(element.date)">
+                    </ion-col>
+                    <ion-col double-lingheight *ngFor="let sum of element.sum.count" col-1 [class.max-value]="sum == element.sum.max">
+                        {{sum}}
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+
+        <div padding></div>
+    </div>
+</ion-content>

@@ -1,0 +1,183 @@
+page-loto-online-statistic {
+    width: 100%;
+    height: 100vh;
+    display: block;
+    .scroll-content {
+        width: 100%;
+        height: 100%;
+    }
+    [padding] {
+        padding: 10px !important;
+    }
+    $lotoItemHeight: 30;
+    .loto-item {
+        width: 100%;
+        border-radius: 20px 0 0 20px;
+        border: solid 1px #ddd;
+        padding: 0;
+        line-height: $lotoItemHeight + px;
+        text-align: right;
+        background-color: #eef2f5;
+    }
+    .code {
+        width: $lotoItemHeight + px;
+        height: $lotoItemHeight + px;
+        border-radius: 50%;
+        display: block;
+        text-align: center;
+        line-height: $lotoItemHeight + px;
+        float: left;
+        color: map-get($colors, danger);
+        margin-right: 2px;
+        background-color: #FFF;
+        border: solid 1px map-get($colors, danger);
+        &.win {
+            background-color: map-get($colors, danger);
+            color: #FFF;
+        }
+        &.code-small {
+            font-size: .7em;
+            line-height: 3*$lotoItemHeight/4 + px;
+            width: 3*$lotoItemHeight/4 + px;
+            height: 3*$lotoItemHeight/4 + px;
+        }
+    }
+    .point {
+        color: map-get($colors, secondary);
+        margin-right: 5px;
+    }
+    .delete-button {
+        background-color: map-get($colors, danger);
+        color: #FFF;
+        height: 100%;
+        width: $lotoItemHeight + px;
+        display: block;
+        float: right;
+        text-align: center;
+        font-size: 16px;
+    }
+    .col {
+        margin-bottom: 5px;
+    }
+    [small-padding] {
+        padding: 0 3px !important;
+    }
+    $segment-height: 100;
+    $active-color: #f58241;
+    .custom-segment {
+        width: 100%;
+        padding: 0 10px;
+        display: flex
+    }
+    .custom-segment-button {
+        color: gray;
+        width: 50%;
+        float: left;
+        height: $segment-height + px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        ion-icon {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            font-size: 2em;
+        }
+        span {
+            flex-grow: 1;
+        }
+        &.active {
+            background-color: #FFF;
+            color: $active-color;
+        }
+    }
+    .day-block {
+        width: 100%;
+        background-color: #FFF;
+        margin-top: 1px;
+    }
+    .result {
+        padding: 0 10px;
+        span {
+            white-space: nowrap;
+        }
+    }
+    .col {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .col-point {
+        border: solid 1px gray;
+        padding: 10px;
+        justify-content: space-between;
+        color: gray;
+    }
+    .red {
+        margin: 0 5px;
+        color: map-get($colors, danger);
+    }
+    .total-col {
+        display: block;
+        .sum-label {
+            font-weight: bold;
+            font-style: italic;
+            text-decoration: underline;
+            margin: 3px 5px;
+            float: left;
+        }
+        .code {
+            margin: 0 3px;
+            display: inline-block;
+            float: none;
+        }
+        .code-block {
+            display: inline-block;
+            border: solid 1px map-get($colors, secondary);
+            margin: 3px;
+            .code-small {
+                font-size: .5em;
+                line-height: 2*$lotoItemHeight/3 + px;
+                width: 2*$lotoItemHeight/3 + px;
+                height: 2*$lotoItemHeight/3 + px;
+            }
+        }
+        line-height: $lotoItemHeight+px;
+        .margin-3 {
+            margin: 3px;
+            display: inline-block;
+        }
+    }
+    .statistic {
+        padding: 1px 10px;
+        .vip-numbers,
+        .top-numbers,
+        .user-statistic {
+            width: 100%;
+            background-color: #FFF;
+        }
+        .vip-codes {
+            display: flex;
+            width: 100%;
+            padding: 10px;
+            justify-content: center;
+            .vip-code {
+                font-size: 1.2em;
+                line-height: 4*$lotoItemHeight/3 + px;
+                width: 4*$lotoItemHeight/3 + px;
+                height: 4*$lotoItemHeight/3 + px;
+                margin: 5px 3px;
+            }
+        }
+        button {
+            margin-top: 10px;
+        }
+        .top-numbers {
+            margin-top: 10px;
+        }
+    }
+    [bold] {
+        font-weight: bold;
+    }
+}

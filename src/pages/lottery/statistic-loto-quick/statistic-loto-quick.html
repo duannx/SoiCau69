@@ -1,0 +1,99 @@
+<ion-content no-bounce>
+
+  <div class="a1-header-height a3-container a3-justify-start a3-items-center m-header ">
+    <div class="a3-container " padding (click)="onClickBack()">
+      <ion-icon name="ios-arrow-back-outline" class="header-button-icon"></ion-icon>
+    </div>
+    <div class="m-header-title" style="flex : 1">Thống kê nhanh</div>
+    <div class="a3-container " padding (click)="onClickFilter()">
+      <ion-icon name="ios-calendar-outline" class="header-button-icon" [class.header-button-icon-inactive]="datas.filter==FILTER_QUICK"></ion-icon>
+    </div>
+  </div>
+
+
+  <div class="a1-content">
+    <div class="a-inputs-controller">
+      <ion-grid>
+        <ion-row *ngIf="datas.filter==FILTER_QUICK">
+          <ion-col col-6 (click)="onClickPickCategory()">
+            <div style="padding-bottom:10px">Chọn tỉnh</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{datas.category.name}}</div>
+              <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+          <ion-col col-6 (click)="onClickPickWeeks()">
+            <div style="padding-bottom:10px">Thời gian</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{datas.weeks}} tuần trước</div>
+              <ion-icon name="ios-calendar-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="datas.filter==FILTER_TIME">
+          <ion-col col-6 (click)="onClickStartDate()">
+            <div style="padding-bottom:10px">Ngày bắt đầu</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{datas.start}}</div>
+              <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+          <ion-col col-6 (click)="onClickEndDate()">
+            <div style="padding-bottom:10px">Ngày kết thúc</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{datas.end}}</div>
+              <ion-icon name="ios-calendar-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="datas.filter==FILTER_TIME">
+          <ion-col (click)="onClickPickCategory()">
+            <div style="padding-bottom:10px">Chọn tỉnh</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{datas.category.name}}</div>
+              <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+          <ion-col (click)="onClickLotos()">
+            <div style="padding-bottom:10px">Bộ số</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{datas.lotos}}</div>
+              <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </div>
+    <div padding text-center style="font-weight:bold;font-size : 1.1em" *ngIf="lotos.length>=10">
+      Top 10 bộ số có số lần xuất hiện nhiều nhất
+    </div>
+    <div class="mChartContainer">
+      <canvas id="mChartCanvas"></canvas>
+    </div>
+
+    <div class="a-table-header" *ngIf="datas.filter==FILTER_TIME">Thống kê nhanh <strong>{{datas.category.name}}</strong> từ ngày <strong>{{datas.start}}</strong> đến ngày <strong>{{datas.end}}</strong>      </div>
+    <div class="a-table-header" *ngIf="datas.filter==FILTER_QUICK">Thống kê nhanh <strong>{{datas.category.name}}</strong> trong khoảng <strong>{{datas.weeks}}</strong> tuần trước</div>
+    <ion-grid>
+      <ion-row class="a-row-header">
+        <ion-col col-2 text-center class="a-col-header">Bộ số</ion-col>
+        <ion-col col-4 text-center class="a-col-header">Số lần xuất hiện</ion-col>
+        <ion-col col-6 text-center class="a-col-header">Lần xuất hiện cuối</ion-col>
+      </ion-row>
+      <ion-row *ngFor="let loto of lotos; let i=index" class="a-row-content" [class.a-row-content-last]="i==(lotos.length-1)" [class.a-row-content-i]="i%2==1">
+        <ion-col col-2 text-center>{{loto.loto}}</ion-col>
+        <ion-col col-4 text-center>{{loto.count}}</ion-col>
+        <ion-col col-6 text-center>{{loto.last_time}}</ion-col>
+      </ion-row>
+    </ion-grid>
+    <div padding></div>
+
+  </div>
+
+
+</ion-content>

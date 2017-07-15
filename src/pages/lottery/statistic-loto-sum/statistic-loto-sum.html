@@ -1,0 +1,102 @@
+<ion-content no-bounce>
+
+  <div class="a1-header-height a3-container a3-justify-start a3-items-center m-header ">
+    <div class="a3-container " padding (click)="onClickBack()">
+      <ion-icon name="ios-arrow-back-outline" class="header-button-icon"></ion-icon>
+    </div>
+    <div class="m-header-title" style="flex:1">Thống kê theo tổng</div>
+    <div class="a3-container " padding (click)="onClickFilter()">
+      <ion-icon name="ios-calendar-outline" class="header-button-icon" [class.header-button-icon-inactive]="inputs.filter==FILTER_QUICK"></ion-icon>
+    </div>
+  </div>
+
+
+  <div class="a1-content">
+
+    <div class="a-inputs-controller">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6 (click)="onClickPickCategory()">
+            <div style="padding-bottom:10px">Chọn tỉnh</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{inputs.category.name}}</div>
+              <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+          <ion-col col-6 (click)="onClickPickSum()">
+            <div style="padding-bottom:10px">Chọn tổng</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{inputs.sum}}</div>
+              <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="inputs.filter==FILTER_TIME">
+          <ion-col col-6 (click)="onClickStartDate()">
+            <div style="padding-bottom:10px">Ngày bắt đầu</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{inputs.start}}</div>
+              <ion-icon name="ios-arrow-dropdown-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+          <ion-col col-6 (click)="onClickEndDate()">
+            <div style="padding-bottom:10px">Ngày kết thúc</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{inputs.end}}</div>
+              <ion-icon name="ios-calendar-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="inputs.filter==FILTER_QUICK">
+          <ion-col (click)="onClickPickWeeks()">
+            <div style="padding-bottom:10px">Vào khoảng</div>
+            <div class="a-input a3-container a3-justify-between">
+              <div>{{inputs.weeks}} tuần trước</div>
+              <ion-icon name="ios-calendar-outline" class="a-input-icon"></ion-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+
+    <div class="mChartContainer">
+      <canvas id="mChart1"></canvas>
+    </div>
+
+    <div class="a-table-header" *ngIf="inputs.filter==FILTER_TIME">Thống kê <strong>{{inputs.category.name}}</strong> theo tổng <strong>{{inputs.sum}}</strong> từ ngày <strong>{{inputs.start}}</strong>      đến ngày <strong>{{inputs.end}}</strong> </div>
+    <div class="a-table-header" *ngIf="inputs.filter==FILTER_QUICK">Thống kê <strong>{{inputs.category.name}}</strong> theo tổng <strong>{{inputs.sum}}</strong> trong khoảng <strong>{{inputs.weeks}}</strong>      tuần trước </div>
+    <ion-grid class="a-table-data">
+      <ion-row class="a-row-header">
+        <ion-col col-2 text-center class="a-col-header" (click)="onClickSortLoto(SORT_LOTO)">
+          <div> Bộ số</div>
+          <div text-center>
+            <ion-icon *ngIf="mSortLoto==DOWN" name="md-arrow-dropdown" class="a-icon-sort"></ion-icon>
+            <ion-icon *ngIf="mSortLoto==NORMAL" name="md-arrow-dropup" class="a-icon-sort"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col col-4 text-center class="a-col-header" (click)="onClickSortLoto(SORT_COUNT)">
+          <div>Số lần về</div>
+          <div text-center>
+            <ion-icon *ngIf="mSortCount==DOWN" name="md-arrow-dropdown" class="a-icon-sort"></ion-icon>
+            <ion-icon *ngIf="mSortCount==UP" name="md-arrow-dropup" class="a-icon-sort"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col col-6 text-center class="a-col-header" (click)="onClickSortLoto(SORT_TIME)">
+           <div>Lần xuất hiện cuối</div>
+          <div text-center>
+            <ion-icon *ngIf="mSortTime==DOWN" name="md-arrow-dropdown" class="a-icon-sort"></ion-icon>
+            <ion-icon *ngIf="mSortTime==UP" name="md-arrow-dropup" class="a-icon-sort"></ion-icon>
+          </div></ion-col>
+      </ion-row>
+      <ion-row *ngFor="let loto of sLotos; let i=index" class="a-row-content" [class.a-row-content-last]="i==(sLotos.length-1)"
+        [class.a-row-content-i]="i%2==1">
+        <ion-col col-2 text-center>{{loto.loto}}</ion-col>
+        <ion-col col-4 text-center>{{loto.count}}</ion-col>
+        <ion-col col-6 text-center>{{loto.last_time}}</ion-col>
+      </ion-row>
+    </ion-grid>
+    <div padding></div>
+  </div>
+</ion-content>

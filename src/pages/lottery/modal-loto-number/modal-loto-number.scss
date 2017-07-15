@@ -1,0 +1,44 @@
+page-modal-loto-number {
+  .modal-button {
+    color: white;
+    font-size: 1.2em;
+  }
+  .a-header {
+    margin-top: 10px;
+    padding: 8px;
+    font-weight: bold;
+    font-size: 1.2em;
+    border-left: 4px solid chocolate;
+  }
+  .a-number {
+    background-color: gray;
+    width: 8vw;
+    height: 8vw;
+    margin: 1vw;
+    border-radius: 4vw;
+  }
+  .a-number-selected {
+    background-color: chocolate;
+    color: white;
+    font-weight: bold;
+  }
+  .a-number-select-container {
+    max-height: 25vh;
+    overflow-y: auto;
+  }
+  .a-number-container {
+   
+  }
+  .a-btn-container {
+    text-align: center;
+  }
+  .a-btn {
+    display: inline-block;
+    width: 48%;
+    text-align: center;
+    background-color: chocolate;
+    color: white;
+    font-size: 1.2em;
+    padding: 10px;
+  }
+}

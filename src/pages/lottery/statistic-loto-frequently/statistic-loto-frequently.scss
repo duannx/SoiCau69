@@ -1,0 +1,62 @@
+page-statistic-loto-frequently {
+    .a-inputs-controller {
+        border: solid 2px map-get($colors, danger);
+        margin: 10px;
+    }
+    .a-input {
+        padding: 10px;
+        border-radius: 4px;
+        border: solid 1px gray;
+        width: 100%;
+    }
+    .a-input-number .text-input {
+        margin: 0 !important;
+    }
+    .a-input-inactive {
+        color: gray;
+    }
+    .a-input-active {
+        color: black;
+    } // Thong ke tần suất
+    .a-lotos-container {
+        margin: 8px;
+    }
+    .a-loto-no-numbers {
+        background-color: lightgray;
+    }
+    .a-loto-category {
+        border: solid 1px lightgray;
+        margin-bottom: 8px;
+    }
+    .a-loto-header {
+        // margin: 1px;
+        background: lightblue;
+    }
+    .a-loto-number {
+        //  margin: 1px;
+        padding: 4px 0 4px 0;
+    }
+    .a-loto-number-loto {
+        font-weight: bold;
+        color: map-get($colors, danger);
+    }
+    .a-loto-number-count {
+        color: blueviolet;
+    }
+    .number-loto {
+        width: 24px;
+        height: 12px;
+        background-color: map-get($colors, danger);
+    }
+    .number-count {
+        width: 24px;
+        height: 12px;
+        background-color: blueviolet;
+    }
+    .mChartContainer {
+        padding: 8px;
+    }
+    #mChartCanvas {
+        width: 100%;
+    }
+}
